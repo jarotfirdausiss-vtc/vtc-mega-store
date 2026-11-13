@@ -1,104 +1,127 @@
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VTC MEGA SHOP - Semua bisa semua ada Lengkap!</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:70px}
-.header{background:#ee4d2d;color:#fff;padding:14px;text-align:center}.header h1{margin:0}.header p{font-size:12px;margin:4px 0 0}
-.live{background:#111;color:#fff;padding:12px;display:flex;gap:10px;overflow:auto}.live div{min-width:150px;background:#222;border-radius:12px;padding:10px;text-align:center}.live button{background:#ff0000;color:#fff;border:0;padding:8px;border-radius:20px;font-weight:bold;width:100%}
-.search{display:flex;gap:8px;padding:10px;background:#fff;position:sticky;top:0;z-index:10}.search input{flex:1;padding:12px;border:2px solid #ee4d2d;border-radius:10px}.search button{background:#ee4d2d;color:#fff;border:0;padding:10px 16px;border-radius:10px;font-weight:bold}
-.cat{display:flex;gap:8px;overflow:auto;padding:10px;background:#fff}.cat button{white-space:nowrap;border:1px solid #ee4d2d;background:#fff;color:#ee4d2d;padding:8px 14px;border-radius:20px}.cat button.active{background:#ee4d2d;color:#fff}
-.grp{background:#fff;margin:10px 10px 0;padding:10px;border-radius:10px;font-weight:bold;font-size:13px;color:#ee4d2d}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:#fff;border-radius:12px;overflow:hidden;padding-bottom:10px}.card img{width:100%;height:120px;object-fit:cover}.card h3{font-size:13px;margin:8px 8px 4px}.card p{margin:2px 8px}.card button{margin:8px;width:calc(100% - 16px);background:#ee4d2d;color:#fff;border:0;padding:9px;border-radius:8px;font-weight:bold}
-.info{background:#fff;margin:10px;padding:14px;border-radius:12px;text-align:center;border:2px dashed #ee4d2d}.info button{width:100%;padding:12px;border:0;border-radius:10px;font-weight:bold;margin-top:8px}
-.seller{background:#111;color:#fff;margin:10px;padding:16px;text-align:center;border-radius:12px}.seller button{background:#25D366;color:#fff;border:0;padding:12px;width:100%;border-radius:10px;font-weight:bold}
-.cartbar{position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;display:flex;justify-content:space-between;padding:12px;z-index:20}.cartbar button{background:#25D366;color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:bold}
-#cartBox{display:none;background:#fff;margin:10px;padding:14px;border-radius:10px}#cartBox input,#cartBox select{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:8px}
-#detail{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:50;padding:20px}#detail div{background:#fff;border-radius:14px;padding:16px;max-height:90vh;overflow:auto}#detail img{width:100%;height:220px;object-fit:cover;border-radius:10px}
-</style></head><body>
-<div class="header"><h1>🛒 VTC MEGA SHOP</h1><p>SEMUA KATEGORI LENGKAP! • Kayak Shopee • Semua Order Via 1 Admin - Aman • COD</p></div>
-<div class="live">
-<div>🔴 LIVE<br><b>Seller Pupuk</b><br>Jam 08.00<br><button onclick="live('Seller Pupuk')">NONTON LIVE</button></div>
-<div>🔴 LIVE<br><b>Seller Bibit</b><br>Jam 10.00<br><button onclick="live('Seller Bibit')">NONTON LIVE</button></div>
-<div>🎬 DRAMA<br><b>Drama Korea</b><br>Episode Baru<br><button style="background:#ee4d2d" onclick="live('Drama Korea')">NONTON</button></div>
-<div>🔴 LIVE<br><b>Seller Ban</b><br>Jam 13.00<br><button onclick="live('Seller Ban')">NONTON LIVE</button></div>
-<div>🔴 LIVE<br><b>Seller Sembako</b><br>Jam 15.00<br><button onclick="live('Seller Sembako')">NONTON LIVE</button></div>
-</div>
-<div class="search"><input id="cari" placeholder="Cari SEMUA: pupuk, bibit, ban, semen, kucing, bayi, kamera, gaming, buku, tiket..." oninput="tampil()"><button onclick="tampil()">CARI</button></div>
-<div class="cat" id="cats"></div>
-<div id="grupBox"></div>
-<div class="grid" id="list"></div>
-<div id="hasilBox"></div>
-<div class="seller"><h2 style="margin:0">Mau Jualan APA AJA? GRATIS! 0% Potongan!</h2><p>Semua order via Admin. Seller tinggal kirim, terima duit!</p><button onclick="seller('')">DAFTAR JADI SELLER - GRATIS</button></div>
-<div id="cartBox"><h3>🛒 Keranjang - Via Admin VTC</h3><div id="isiCart"></div><p>Total: <b id="tot">Rp 0</b></p><select id="ekspedisi"><option value="9000">JNE Reguler - COD BISA - Rp9.000 - 2-3 Hari</option><option value="11000">J&T Express - Rp11.000 - 1-3 Hari</option><option value="8000">SiCepat - Rp8.000 - 2-3 Hari</option></select><input id="nama" placeholder="Nama Lengkap"><input id="alamat" placeholder="Alamat Lengkap + Patokan"><button style="width:100%;background:#25D366;color:#fff;border:0;padding:12px;border-radius:8px;font-weight:bold" onclick="checkout()">CHECKOUT - KE WA ADMIN ✅</button></div>
-<div class="cartbar"><span>🛒 <span id="jml">0</span> • <b id="totalBar">Rp 0</b></span><button onclick="bukaCart()">LIHAT KERANJANG</button></div>
-<div id="detail"><div id="detailIsi"></div></div>
+<title>VTC MEGA SHOP - Gambar Asli Per Barang</title>
+<style>*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f5f5}.top{background:#ee4d2d;color:#fff;padding:14px;text-align:center}.top h1{margin:0;font-size:26px}.top p{margin:4px 0 0;font-size:13px}.live{display:flex;gap:10px;overflow:auto;padding:10px;background:#111}.live div{background:#222;color:#fff;padding:12px;border-radius:12px;min-width:170px;text-align:center}.live button{background:red;color:#fff;border:0;padding:8px;border-radius:8px;width:100%;font-weight:bold}.search{display:flex;gap:8px;padding:10px;background:#fff;position:sticky;top:0;z-index:10}.search input{flex:1;padding:12px;border:2px solid #ee4d2d;border-radius:10px;font-size:15px}.search button{background:#ee4d2d;color:#fff;border:0;padding:0 18px;border-radius:10px;font-weight:bold}.cats{display:flex;gap:8px;overflow:auto;padding:8px 10px;background:#fff}.cats button{white-space:nowrap;padding:8px 14px;border-radius:20px;border:1px solid #ee4d2d;background:#fff;color:#ee4d2d;font-weight:bold}.cats button.on{background:#ee4d2d;color:#fff}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}.card{background:#fff;border-radius:14px;overflow:hidden;padding-bottom:10px}.card img{width:100%;height:150px;object-fit:cover;display:block;background:#eee}.card h3{margin:8px 10px 2px;font-size:15px;line-height:1.2}.card .pr{margin:0 10px;color:#ee4d2d;font-weight:bold;font-size:16px}.card .tk{margin:2px 10px;font-size:12px;color:#555}.card .ds{margin:4px 10px;font-size:12px;color:#777;height:32px;overflow:hidden}.card button{margin:8px 10px 0;width:calc(100% - 20px);background:#ee4d2d;color:#fff;border:0;padding:10px;border-radius:10px;font-weight:bold}.cart{position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px}.cart b{font-size:18px}.cart button{background:#25D366;color:#fff;border:0;padding:10px 16px;border-radius:10px;font-weight:bold}.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-end}.modal.open{display:flex}.box{background:#fff;width:100%;max-height:90vh;overflow:auto;border-radius:16px 16px 0 0;padding:14px}.box img{width:100%;height:240px;object-fit:cover;border-radius:12px}.box input,.box select{width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:10px}.btn{width:100%;padding:13px;border:0;border-radius:12px;font-weight:bold;margin-top:8px}.green{background:#25D366;color:#fff}.orange{background:#ee4d2d;color:#fff}.grey{background:#eee}</style></head>
+<body>
+<div class="top"><h1>🛒 VTC MEGA SHOP</h1><p>SEMUA KATEGORI LENGKAP! • Gambar Sudah Per Barang • Via 1 Admin - COD</p></div>
+<div class="live"><div>🔴 LIVE<br>Seller Pupuk Jam 08.00<br><button onclick="wa('Mau nonton LIVE Pupuk')">NONTON LIVE</button></div><div>🔴 LIVE<br>Seller Bibit Jam 10.00<br><button onclick="wa('Mau nonton LIVE Bibit')">NONTON LIVE</button></div><div>🎬 Drama<br>VTC Episode 1<br><button onclick="wa('Mau nonton Drama VTC')">NONTON</button></div></div>
+<div class="search"><input id="q" placeholder="Cari: pupuk, hijab, tas, kucing, gaming, kamera..." onkeyup="if(event.key==='Enter')cari()"><button onclick="cari()">CARI</button></div>
+<div class="cats" id="cats"></div>
+<div id="list" class="grid"></div>
+<div style="height:70px"></div>
+<div class="cart"><span>🛒 <b id="cnt">0</b> • <b id="tot">Rp 0</b></span><button onclick="openCart()">LIHAT KERANJANG</button></div>
+
+<div class="modal" id="mDetail"><div class="box"><div id="dCont"></div><button class="btn grey" onclick="closeAll()">TUTUP</button></div></div>
+<div class="modal" id="mCart"><div class="box"><h2>Keranjang Kamu</h2><div id="cCont"></div><input id="nama" placeholder="Nama Lengkap"><input id="alamat" placeholder="Alamat Lengkap + Patokan"><select id="exp"><option>J&T Express</option><option>JNE</option><option>SiCepat</option><option>AnterAja</option><option>COD - Bayar di Tempat</option></select><button class="btn green" onclick="checkout()">CHECKOUT - KE WA ADMIN</button><button class="btn grey" onclick="closeAll()">TUTUP</button></div></div>
+
 <script>
-const WA='6283878502333';
-let dasar=[{name:'Kaos Oversize Premium',harga:75000,kat:'Fashion',seller:'VTC Official',desk:'Kaos oversize katun combed 30s, adem, sablon awet, M-XXL.',img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500',key:'baju kaos fashion'}];
-let gen={
-// === 1. KEBUTUHAN SEHARI-HARI & GAYA HIDUP (Dari Screenshot) ===
-pupuk:{kat:'Pertanian',seller:'Toko Tani Jaya',img:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500',desk:'Pupuk ori pabrik, segel, untuk padi jagung sawit sayur.',list:['Pupuk Urea 50kg','Pupuk NPK 16-16-16 50kg','Pupuk NPK Phonska 50kg','Pupuk ZA 50kg','Pupuk KCL 50kg','Pupuk SP-36 50kg','Pupuk Organik Cair 1L','Pupuk Organik Granul 25kg','Pupuk Kompos 20kg','Pupuk Kandang Ayam 25kg','Pupuk Gandasil D','Pupuk Gandasil B','Pupuk MKP','Pupuk KNO3 Merah','Pupuk KNO3 Putih','Pupuk Boron','Pupuk Dolomit','Pupuk POC NASA','Pupuk Hormon Gibro','Pupuk Daun Growmore']},
-bibit:{kat:'Pertanian',seller:'Bibit Unggul Nusantara',img:'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=500',desk:'Bibit unggul bersertifikat, daya tumbuh 90%+, siap tanam.',list:['Bibit Padi Ciherang','Bibit Padi IR64','Bibit Jagung Manis','Bibit Jagung Hibrida Bisi','Bibit Cabai Rawit','Bibit Cabai Merah Keriting','Bibit Tomat','Bibit Terong Ungu','Bibit Sawi Hijau','Bibit Kangkung','Bibit Bayam','Bibit Timun','Bibit Kacang Panjang','Bibit Sawit Unggul','Bibit Durian Musang King','Bibit Alpukat Mentega','Bibit Mangga Harum Manis','Bibit Kelapa Genjah','Bibit Kopi Robusta','Bibit Kakao']},
-baju:{kat:'Fashion',seller:'VTC Fashion',img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500',desk:'Fashion pria & wanita, pakaian atasan, celana, jaket, pakaian dalam.',list:['Kaos Polos','Kaos Oversize','Kemeja Pria','Kemeja Wanita','Gamis Wanita','Hijab Segi Empat','Hijab Pashmina','Celana Jeans Pria','Celana Jeans Wanita','Celana Chino','Jaket Hoodie','Jaket Bomber','Dress Wanita','Baju Anak','Seragam Sekolah','Baju Koko Pria','Mukena','Daster Wanita','Baju Tidur','Kaos Kaki 3 Pasang','Pakaian Dalam Pria','Pakaian Dalam Wanita']},
-tas:{kat:'Fashion',seller:'VTC Fashion',img:'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500',desk:'Tas, sepatu & aksesoris: alas kaki, tas ransel, jam tangan, kacamata, perhiasan.',list:['Tas Ransel Sekolah','Tas Ransel Laptop','Tas Selempang Pria','Tas Selempang Wanita','Tas Handbag Wanita','Tas Tote Bag','Tas Waistbag','Tas Koper 20 Inch','Tas Koper 24 Inch','Tas Travel','Tas Anak Karakter','Dompet Pria','Dompet Wanita','Jam Tangan Pria','Jam Tangan Wanita','Kacamata Hitam','Kacamata Baca','Kalung Emas','Anting Wanita','Gelang']},
-sepatu:{kat:'Fashion',seller:'VTC Fashion',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500',desk:'Sepatu ori, nyaman, ringan, untuk jalan & olahraga.',list:['Sepatu Nike Air','Sepatu Adidas Running','Sepatu Puma','Sepatu New Balance','Sepatu Vans','Sepatu Converse','Sepatu Futsal Specs','Sepatu Bola','Sepatu Sekolah Hitam','Sepatu Pantofel','Sepatu Boots','Sepatu Sandal Gunung','Sepatu Sneakers Wanita','Sepatu Heels Wanita','Sandal Jepit Swallow','Sandal Slop']},
-kosmetik:{kat:'Kecantikan',seller:'VTC Beauty',img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500',desk:'Kecantikan & perawatan diri: skincare, kosmetik, parfum, perawatan rambut.',list:['Lipstik Matte','Lip Tint','Bedak Padat','Bedak Tabur','Foundation','BB Cream','Serum Wajah Vitamin C','Serum Niacinamide','Sunscreen SPF 50','Masker Wajah','Eyeliner','Mascara','Blush On','Parfum Wanita','Parfum Pria','Body Lotion','Sabun Cuci Muka','Toner Wajah','Shampo Anti Ketombe','Hair Tonic','Cat Rambut']},
-bayi:{kat:'Ibu, Bayi & Anak',seller:'Toko Bayi Ceria',img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500',desk:'Ibu, bayi & anak: perlengkapan bayi, popok, susu formula, pakaian anak, mainan edukasi.',list:['Popok Merries S','Popok Merries M','Popok Sweety L','Popok MamyPoko','Susu Formula SGM Ananda','Susu Formula Bebelac','Susu Formula Dancow','Botol Susu','Dot Bayi','Bedak Bayi','Minyak Telon','Baju Bayi Set','Celana Bayi','Stroller Bayi','Mainan Edukasi Bayi','Kursi Makan Bayi','Gendongan Bayi','Bantal Bayi','Selimut Bayi','Pakaian Anak 3-5 Tahun']},
-// === 2. RUMAH TANGGA & KONSUMSI ===
-beras:{kat:'Makanan',seller:'Toko Sembako VTC',img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500',desk:'Makanan & minuman: bahan masakan, camilan, kopi, teh, makanan siap saji.',list:['Beras Premium 5kg','Beras Premium 10kg','Beras Medium 5kg','Beras Pandan Wangi 5kg','Beras Merah 1kg','Beras Hitam 1kg','Beras Ketan Putih 1kg','Beras Ketan Hitam 1kg','Beras Basmati 1kg','Beras Porang']},
-minyak:{kat:'Makanan',seller:'Toko Sembako VTC',img:'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500',desk:'Minyak goreng jernih, hemat, ori pabrik.',list:['Minyak Goreng Filma 1L','Minyak Goreng Bimoli 1L','Minyak Goreng Tropical 1L','Minyak Goreng Sunco 2L','Minyak Goreng Sania 2L','Minyak Goreng Fortune 1L','Minyak Goreng Curah 1L','Minyak Goreng Curah 5L','Minyak Zaitun 250ml','Minyak Kelapa VCO','Minyak Wijen','Minyak Goreng Rose Brand 1L']},
-telur:{kat:'Makanan',seller:'Toko Sembako VTC',img:'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=500',desk:'Telur fresh baru, dari peternakan langsung.',list:['Telur Ayam Negeri 1kg','Telur Ayam Negeri 1 Tray 30 Butir','Telur Ayam Kampung 10 Butir','Telur Ayam Kampung 1kg','Telur Bebek 10 Butir','Telur Bebek Asin 10 Butir','Telur Puyuh 250g','Telur Omega 10 Butir','Telur Ayam Organik']},
-gula:{kat:'Makanan',seller:'Toko Sembako VTC',img:'https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=500',desk:'Gula manis asli, untuk masak, kopi & jualan.',list:['Gula Pasir Rose Brand 1kg','Gula Pasir Gulaku 1kg','Gula Pasir 5kg','Gula Merah / Gula Aren 1kg','Gula Merah Kelapa 500g','Gula Batu 500g','Gula Halus','Gula Aren Cair 500ml','Gula Stevia Diet']},
-susu:{kat:'Makanan',seller:'Toko Sembako VTC',img:'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500',desk:'Susu asli, exp panjang, untuk anak & dewasa.',list:['Susu Dancow 400g','Susu Dancow 800g','Susu Frisian Flag 400g','Susu Indomilk 400g','Susu Bear Brand 1 Kaleng','Susu UHT Ultra Milk 1L','Susu UHT Indomilk 1L','Susu Kental Manis 500g','Susu SGM Ananda','Susu Bebelac','Susu Kedelai','Susu Almond']},
-kopi:{kat:'Makanan',seller:'Toko Sembako VTC',img:'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500',desk:'Kopi asli, wangi, baru giling. Ada bubuk & biji.',list:['Kopi Robusta Bubuk 250g','Kopi Arabika Bubuk 250g','Kopi Lampung 500g','Kopi Gayo Aceh 250g','Kopi Toraja 250g','Kopi Kapal Api','Kopi Good Day','Kopi Nescafe','Kopi Susu Gula Aren','Biji Kopi Robusta 1kg','Teh Celup Sariwangi','Teh Hijau','Camilan Keripik Singkong','Camilan Seblak','Makanan Siap Saji Rendang']},
-perabot:{kat:'Rumah & Dapur',seller:'Toko Perabot VTC',img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500',desk:'Perlengkapan rumah & dapur: perabotan, dekorasi, peralatan masak, alat kebersihan.',list:['Sofa Minimalis','Kasur Spring Bed','Lemari Pakaian','Meja Belajar','Kursi Plastik','Rak Piring','Kompor Gas 2 Tungku','Tabung Gas 3kg','Kipas Angin','Rice Cooker','Dispenser','Blender','Setrika','Ember + Gayung','Sapu + Pengki','Tirai Gorden','Dekorasi Ruang Tamu','Peralatan Masak Set','Alat Kebersihan Pel']},
-hewan:{kat:'Hewan Peliharaan',seller:'Pet Shop VTC',img:'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=500',desk:'Hewan peliharaan (Pet Shop): makanan kucing & anjing, kandang, pasir, aksesoris hewan.',list:['Makanan Kucing Whiskas 1kg','Makanan Kucing Bolt 1kg','Makanan Kucing Royal Canin','Makanan Anjing Pedigree','Makanan Anjing Bolt','Kandang Kucing','Kandang Anjing','Pasir Kucing 5L','Pasir Kucing Wangi','Shampo Kucing','Shampo Anjing','Kalung Kucing','Kalung Anjing','Mainan Kucing','Tempat Makan Kucing','Vitamin Kucing','Obat Kutu Kucing','Sisir Kucing','Tali Anjing','Baju Kucing']},
-kucing:{kat:'Hewan Peliharaan',seller:'Pet Shop VTC',img:'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500',desk:'Makanan & aksesoris kucing lengkap, ori.',list:['Makanan Kucing Whiskas 1kg','Makanan Kucing Bolt 1kg','Makanan Kucing Royal Canin','Kandang Kucing','Pasir Kucing 5L','Shampo Kucing','Kalung Kucing','Mainan Kucing','Vitamin Kucing','Obat Kutu Kucing']},
-pakan:{kat:'Peternakan',seller:'Toko Pakan Jaya',img:'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500',desk:'Pakan ternak & ikan, protein tinggi, cepat besar.',list:['Pakan Ayam Pedaging 50kg','Pakan Ayam Petelur 50kg','Pakan Ayam Kampung','Pakan Bebek 50kg','Pakan Lele 30kg','Pakan Nila 30kg','Pakan Ikan Hias','Pakan Sapi 50kg','Pakan Kambing 25kg','Pakan Kucing 1kg','Pakan Anjing 1kg','Pakan Burung Lovebird']},
-// === 3. TEKNOLOGI & HIBURAN ===
-hp:{kat:'Handphone & Aksesoris',seller:'VTC Elektronik',img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500',desk:'Handphone & aksesoris: ponsel pintar, casing, pengisi daya, powerbank, kartu perdana.',list:['HP Samsung A05','HP Samsung A15','HP Xiaomi Redmi 13','HP Oppo A18','HP Vivo Y03','HP Realme C51','HP Infinix Hot 40','HP iPhone 11 Bekas','HP iPhone 12 Bekas','HP Samsung S21 Bekas','Casing HP','Pengisi Daya / Charger Ori','Powerbank 10000mAh','Powerbank 20000mAh','Kartu Perdana Telkomsel','Kartu Perdana XL','Headset Bluetooth','Kabel Data','Tempered Glass','Holder HP']},
-elektronik:{kat:'Elektronik & Komputer',seller:'VTC Elektronik',img:'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=500',desk:'Elektronik & komputer: laptop, perangkat rakitan PC, televisi, kulkas, mesin cuci.',list:['Laptop Lenovo','Laptop HP','Laptop Asus','PC Rakitan Gaming','Monitor 24 Inch','Keyboard + Mouse','Printer Epson','TV LED 32 Inch','TV LED 43 Inch','Kulkas 2 Pintu','Kulkas 1 Pintu','Mesin Cuci 2 Tabung','Mesin Cuci Front Load','AC 1/2 PK','AC 1 PK','Kulkas Showcase']},
-kamera:{kat:'Fotografi & Audio',seller:'VTC Kamera',img:'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500',desk:'Fotografi & audio: kamera, lensa, mikrofon, headphone, speaker.',list:['Kamera Canon EOS','Kamera Nikon','Kamera Mirrorless Sony','Lensa Canon 50mm','Lensa Sony','Mikrofon Wireless','Mikrofon Podcast','Headphone Sony','Headphone JBL','Speaker Bluetooth JBL','Speaker Bluetooth Portable','Tripod Kamera','Memory Card 64GB','Baterai Kamera','Tas Kamera','Ring Light','Stabilizer Gimbal']},
-gaming:{kat:'Gaming & Hobi',seller:'Toko Gaming VTC',img:'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500',desk:'Gaming & hobi: konsol game, kaset permainan, action figure, alat musik, koleksi barang antik.',list:['PS5 Slim','PS4 Pro','Nintendo Switch','Xbox Series S','Stick PS5','Kaset PS5 Spiderman','Kaset PS4 GTA V','Action Figure Naruto','Action Figure One Piece','Action Figure Marvel','Gitar Akustik','Gitar Listrik','Keyboard Piano','Drum Anak','Koleksi Barang Antik Koin Kuno','Koleksi Hot Wheels','Voucher Game Free Fire','Voucher Game Mobile Legend','Kursi Gaming','Headset Gaming']},
-mainan:{kat:'Hobi & Mainan',seller:'Toko Mainan VTC',img:'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=500',desk:'Mainan anak aman, edukatif, SNI.',list:['Mobil Remote Control','Boneka Barbie','Lego Balok','Puzzle Edukasi','Sepeda Anak','Skuter Anak','Mainan Masak-masakan','Mainan Dokter-dokteran','Bola Sepak Anak','Layangan','Gasing','Rubik','Drone Mini','Robot Dancing','Mainan Slime','Mainan Pasir Kinetik']},
-// === 4. OTOMOTIF & PERJALANAN ===
-ban:{kat:'Otomotif',seller:'Toko Ban Berkah',img:'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=500',desk:'Otomotif: suku cadang motor & mobil, oli, helm, aksesoris kendaraan.',list:['Ban Michelin Pilot Street','Ban Bridgestone Battlax','Ban Dunlop Sportmax','Ban Pirelli Diablo Rosso','Ban FDR Sport XR','Ban IRC RX-01','Ban Corsa Platinum','Ban Maxxis Victra','Ban Swallow Street','Ban Aspira Premio','Ban Michelin City Grip','Ban Bridgestone Turanza Mobil','Ban Dunlop Enasave Mobil','Ban GT Radial Champiro','Ban Hankook Kinergy','Ban Yokohama Advan','Ban Continental','Ban Pirelli P Zero Mobil','Ban FDR Flemmo','Ban IRC MBR 110']},
-motor:{kat:'Otomotif',seller:'Showroom Motor Berkah',img:'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500',desk:'Motor baru & bekas, surat lengkap, bisa kredit & COD.',list:['Honda Beat Baru','Honda Vario 160','Honda Scoopy','Honda PCX 160','Yamaha NMAX','Yamaha Aerox','Yamaha Mio M3','Suzuki Nex','Honda Supra X','Yamaha Jupiter','Motor Bekas Beat','Motor Bekas Vario','Motor Bekas NMAX','Oli Motor MPX','Oli Motor Yamalube','Aki Motor Yuasa','Helm Full Face','Helm Half Face','Spion Motor','Kampas Rem Motor']},
-mobil:{kat:'Otomotif',seller:'Showroom Mobil Berkah',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500',desk:'Mobil baru & bekas, surat lengkap, garansi mesin, bisa kredit.',list:['Toyota Avanza','Toyota Calya','Daihatsu Xenia','Daihatsu Sigra','Honda Brio','Honda Mobilio','Suzuki Ertiga','Toyota Innova','Mitsubishi Xpander','Toyota Rush','Daihatsu Terios','Mobil Bekas Avanza','Mobil Bekas Xenia','Mobil Bekas Brio','Oli Mobil Shell','Aki Mobil GS','Helm Mobil','Suku Cadang Mobil','Aksesoris Mobil']},
-buku:{kat:'Buku & Alat Tulis',seller:'Toko Buku VTC',img:'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500',desk:'Buku & alat tulis: novel, buku pelajaran, perlengkapan kantor, alat lukis.',list:['Novel Bumi Tere Liye','Novel Dilan','Buku Pelajaran SD','Buku Pelajaran SMP','Buku Pelajaran SMA','Buku Matematika','Buku Bahasa Inggris','Buku Mewarnai Anak','Buku Tulis 38 Lembar','Buku Tulis 58 Lembar','Pulpen Hitam','Pensil 2B','Penghapus','Penggaris Set','Spidol Warna','Crayon 24 Warna','Cat Air Lukis','Kuas Lukis','Tas Sekolah','Perlengkapan Kantor Map']},
-tiket:{kat:'Tiket, Voucher & Tagihan',seller:'VTC Tiket',img:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500',desk:'Tiket, voucher & tagihan: pulsa, paket data, token listrik, tiket pesawat, pemesanan hotel.',list:['Pulsa Telkomsel 10rb','Pulsa Telkomsel 50rb','Pulsa XL 10rb','Pulsa Indosat 10rb','Paket Data Telkomsel 5GB','Paket Data XL 10GB','Token Listrik 20rb','Token Listrik 50rb','Token Listrik 100rb','Tiket Pesawat Jakarta - Surabaya','Tiket Pesawat Jakarta - Bali','Tiket Kereta Api','Voucher Hotel Bali','Voucher Hotel Bandung','Voucher Game Free Fire','Voucher Game Mobile Legend','Bayar BPJS','Bayar PDAM']},
-pulsa:{kat:'Tiket, Voucher & Tagihan',seller:'VTC Pulsa',img:'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500',desk:'Pulsa & paket data masuk hitungan detik, 24 jam.',list:['Pulsa Telkomsel 10rb','Pulsa Telkomsel 20rb','Pulsa Telkomsel 50rb','Pulsa XL 10rb','Pulsa Indosat 10rb','Pulsa Tri 10rb','Pulsa Axis 10rb','Paket Data Telkomsel 5GB','Paket Data XL 10GB','Token Listrik 20rb','Token Listrik 50rb','Token Listrik 100rb','Voucher Game Free Fire','Voucher Game Mobile Legend']},
-semen:{kat:'Bangunan',seller:'Toko Bangunan Berkah',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500',desk:'Semen ori, fresh, tidak bantat. Untuk cor, plester & bata.',list:['Semen Tiga Roda 50kg','Semen Gresik 50kg','Semen Padang 50kg','Semen Holcim 50kg','Semen Merah Putih 50kg','Semen Baturaja 50kg','Semen Bosowa 50kg','Semen Conch 50kg','Semen Mortar Plester','Semen Mortar Acian','Semen Putih 40kg','Semen Instan Bata Ringan','Semen Waterproof','Semen Grouting']},
-cat:{kat:'Bangunan',seller:'Toko Bangunan Berkah',img:'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=500',desk:'Cat tembok & kayu asli, warna lengkap, anti jamur.',list:['Cat Tembok Avian 5kg','Cat Tembok Dulux 5kg','Cat Tembok Nippon Paint 5kg','Cat Tembok Jotun 5kg','Cat Tembok Puffin','Cat Kayu & Besi Avian','Cat Kayu Mowilex','Cat Genteng','Cat Waterproof Aquaproof','Cat Anti Bocor','Cat Dasar Plamir','Cat Semprot Pilox','Cat Duco Mobil','Cat Tembok Eksterior']},
-obat:{kat:'Kesehatan',seller:'Apotek VTC',img:'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=500',desk:'Obat asli, exp panjang. Konsultasi gratis via Admin.',list:['Paracetamol','Amoxicillin','Vitamin C 1000mg','Vitamin D','Obat Maag Promag','Obat Flu & Batuk','Salep Gatal','Minyak Kayu Putih','Betadine','Plester Luka','Masker 3 Ply','Hand Sanitizer','Obat Sakit Gigi','Obat Diare']}
-};
-let cartList=[];let katAktif='Semua';
-let cats=['Semua','Fashion','Kecantikan','Ibu, Bayi & Anak','Makanan','Rumah & Dapur','Hewan Peliharaan','Pertanian','Peternakan','Handphone & Aksesoris','Elektronik & Komputer','Fotografi & Audio','Gaming & Hobi','Otomotif','Buku & Alat Tulis','Tiket, Voucher & Tagihan','Bangunan','Kesehatan'];
-function rupiah(n){return 'Rp '+n.toLocaleString('id-ID')}
-function renderCat(){document.getElementById('cats').innerHTML=cats.map(c=>`<button class="${c==katAktif?'active':''}" onclick="pilihKat('${c}')">${c}</button>`).join('')}
-function pilihKat(c){katAktif=c;renderCat();tampil()}
-function tampil(){
-let q=document.getElementById('cari').value.trim().toLowerCase();
-let hasil=[...dasar];
-for(let k in gen){if(q.includes(k)||katAktif.toLowerCase().includes(k)||gen[k].kat.toLowerCase()==katAktif.toLowerCase()||gen[k].kat.toLowerCase().includes(q)){gen[k].list.forEach((nama,i)=>{hasil.push({name:nama,harga:15000+((i*9000)%250000),kat:gen[k].kat,seller:gen[k].seller,desk:gen[k].desk,img:gen[k].img,key:k})})}}
-let f=hasil.filter(p=>(katAktif=='Semua'||p.kat==katAktif)&&(!q||p.name.toLowerCase().includes(q)||p.key?.includes(q)||p.kat.toLowerCase().includes(q)||q.includes(p.key)));
-if(gen[q.split(' ')[0]]){f=hasil.filter(p=>p.key==q.split(' ')[0])}
-window._f=f;
-document.getElementById('grupBox').innerHTML=(katAktif=='Semua'&&!q)?`<div class="grp">1. Kebutuhan Sehari-hari & Gaya Hidup • Fashion • Tas Sepatu • Kecantikan • Ibu Bayi Anak</div><div class="grp">2. Rumah Tangga & Konsumsi • Makanan • Rumah Dapur • Hewan Peliharaan</div><div class="grp">3. Teknologi & Hiburan • Handphone • Elektronik • Fotografi Audio • Gaming Hobi</div><div class="grp">4. Otomotif & Perjalanan • Otomotif • Buku Alat Tulis • Tiket Voucher Tagihan</div>`:'';
-document.getElementById('list').innerHTML=f.map((p,i)=>`<div class="card" onclick="lihat(${i})"><img src="${p.img}"><h3>${p.name}</h3><p>${rupiah(p.harga)}</p><p style="color:#666;font-size:11px">🏪 ${p.seller}</p><p style="color:#888;font-size:11px">${p.desk.substring(0,55)}...</p><button onclick="event.stopPropagation();addIdx(${i})">+ KERANJANG - VIA ADMIN</button></div>`).join('')||'<p style="text-align:center">Lagi dicariin...</p>';
-let box=document.getElementById('hasilBox');
-if(q){box.innerHTML=`<div class="info"><h2 style="margin:0">🔍 Ditemukan ${f.length} jenis "${document.getElementById('cari').value}"</h2><p>Semua otomatis muncul! Semua order masuk ke 1 WA Admin VTC.</p><button style="background:#25D366;color:#fff" onclick="mintaBarang()">📦 PESAN "${document.getElementById('cari').value.toUpperCase()}" - KE WA ADMIN</button><button style="background:#ee4d2d;color:#fff" onclick="seller(document.getElementById('cari').value)">🏪 SAYA JUAL ${document.getElementById('cari').value.toUpperCase()}, MAU JADI SELLER!</button></div>`}else{box.innerHTML=''}
+const WA="6283878502333";
+function wa(p){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(p),"_blank")}
+let cart=[]; let filterCat="Semua"; let filterQ="";
+// DATABASE - NAMA BEDA, GAMBAR BEDA OTOMATIS DARI NAMA
+const DB=[
+["Pupuk","Pupuk Urea 50kg","Toko Tani Jaya","Pupuk ori pabrik, segel, untuk padi jagung sawit sayur."],
+["Pupuk","Pupuk ZA 50kg","Toko Tani Jaya","Pupuk ZA asli untuk kesuburan tanah dan daun hijau."],
+["Pupuk","Pupuk KCL 50kg","Toko Tani Jaya","Pupuk KCL untuk buah lebat dan batang kuat."],
+["Pupuk","Pupuk SP-36 50kg","Toko Tani Jaya","Pupuk SP36 untuk akar kuat dan bunga."],
+["Pupuk","Pupuk NPK 16-16-16 50kg","Toko Tani Jaya","NPK seimbang untuk semua tanaman."],
+["Pupuk","Pupuk Organik Cair 1L","Toko Tani Jaya","Organik cair, aman untuk sayur dan buah."],
+["Bibit","Bibit Padi Ciherang","Bibit Unggul Nusantara","Bibit unggul bersertifikat, daya tumbuh 90%+, siap tanam."],
+["Bibit","Bibit Padi IR64","Bibit Unggul Nusantara","Bibit padi unggul tahan hama, hasil tinggi."],
+["Bibit","Bibit Jagung Manis","Bibit Unggul Nusantara","Jagung manis, manis, cepat panen 65 hari."],
+["Bibit","Bibit Sawit Unggul","Bibit Unggul Nusantara","Bibit sawit unggul, buah besar, cepat berbuah."],
+["Bibit","Bibit Durian Musang King","Bibit Unggul Nusantara","Bibit durian musang king asli, okulasi."],
+["Fashion","Kaos Oversize Premium","VTC Fashion","Kaos oversize katun combed 30s, adem, sablon awet."],
+["Fashion","Hijab Segi Empat","VTC Fashion","Hijab segi empat voal premium, adem, tidak licin, mudah dibentuk."],
+["Fashion","Hijab Pashmina","VTC Fashion","Hijab pashmina ceruty babydoll, flowy, panjang menutup dada."],
+["Fashion","Celana Jeans Pria","VTC Fashion","Celana jeans pria stretch, tidak panas, potongan slim fit."],
+["Fashion","Celana Jeans Wanita","VTC Fashion","Celana jeans wanita high waist, stretch, nyaman."],
+["Fashion","Jaket Hoodie","VTC Fashion","Jaket hoodie fleece tebal, hangat, ada kantong dan kupluk."],
+["Fashion","Dress Wanita","VTC Fashion","Dress wanita motif bunga, bahan jatuh, adem untuk jalan."],
+["Fashion","Celana Chino","VTC Fashion","Celana chino pria formal santai, bahan katun."],
+["Tas","Tas Ransel Sekolah","VTC Fashion","Tas ransel sekolah anak, banyak kantong, anti air, kuat."],
+["Tas","Tas Ransel Laptop","VTC Fashion","Tas ransel laptop 15 inch, ada USB charger, anti maling."],
+["Tas","Tas Selempang Pria","VTC Fashion","Tas selempang pria kulit, untuk HP dompet dan kunci."],
+["Tas","Tas Selempang Wanita","VTC Fashion","Tas selempang wanita mini, kulit sintetis premium."],
+["Kecantikan","Serum Wajah Glowing","VTC Beauty","Serum wajah vitamin C, mencerahkan dan menghilangkan flek."],
+["Kecantikan","Lipstik Matte","VTC Beauty","Lipstik matte tahan 12 jam, tidak crack, warna cantik."],
+["Ibu, Bayi & Anak","Popok Bayi S M L XL","VTC Baby","Popok bayi lembut, daya serap tinggi, anti bocor 12 jam."],
+["Ibu, Bayi & Anak","Susu Formula Bayi","VTC Baby","Susu formula bayi 0-12 bulan, nutrisi lengkap."],
+["Ibu, Bayi & Anak","Botol Susu Bayi","VTC Baby","Botol susu bayi anti kolik, BPA free."],
+["Hewan","Makanan Kucing Whiskas 1kg","VTC Pet","Makanan kucing dewasa rasa tuna salmon, bulu sehat."],
+["Hewan","Makanan Anjing 1kg","VTC Pet","Makanan anjing semua ras, protein tinggi."],
+["Hewan","Kandang Kucing Besi","VTC Pet","Kandang kucing besi lipat, mudah dibersihkan."],
+["Hewan","Pasir Kucing Wangi 10L","VTC Pet","Pasir kucing wangi lavender, menggumpal, anti bau."],
+["Elektronik","Kamera Canon DSLR","VTC Elektro","Kamera DSLR Canon, foto jernih, untuk pemula dan konten."],
+["Elektronik","Lensa Kamera 50mm","VTC Elektro","Lensa fix 50mm bokeh cantik untuk foto portrait."],
+["Elektronik","Speaker Bluetooth","VTC Elektro","Speaker bluetooth bass nendang, baterai 12 jam."],
+["Gaming","PS5 Slim 1TB","VTC Gaming","PlayStation 5 Slim 1TB, garansi resmi, stick 1."],
+["Gaming","Nintendo Switch","VTC Gaming","Nintendo Switch OLED, untuk main bareng keluarga."],
+["Gaming","Stik PS5 Original","VTC Gaming","Stik PS5 DualSense original, getar halus."],
+["Otomotif","Ban Motor 80/90","VTC Oto","Ban motor tubeless, grip kuat, awet, untuk matic."],
+["Otomotif","Oli Motor 1L","VTC Oto","Oli motor 10W-40, mesin halus, tarikan enteng."],
+["Buku","Novel Best Seller","VTC Book","Novel best seller, cerita seru, tidak bisa berhenti baca."],
+["Buku","Buku Anak Bergambar","VTC Book","Buku anak bergambar warna-warni, edukasi."],
+["Buku","Pensil 2B 1 Lusin","VTC Book","Pensil 2B untuk ujian dan gambar, tidak mudah patah."],
+["Tiket","Voucher Pulsa 50rb","VTC Tiket","Voucher pulsa all operator, langsung aktif."],
+["Tiket","Tiket Bioskop 1 Orang","VTC Tiket","Tiket bioskop semua studio, pilih jam sendiri."],
+];
+// GENERATOR HARGA AGAR BEDA-BEDA TAPI MASUK AKAL
+function harga(i){return (15000 + (i*9000)%180000)}
+// INI KUNCINYA: GAMBAR DIAMBIL DARI NAMA BARANG, BUKAN DARI KATEGORI!
+// Jadi Hijab cari gambar hijab, Tas cari gambar tas, Pupuk cari gambar pupuk
+function gambar(nama,kat){
+  let key = nama.toLowerCase().replace(/[^a-z ]/g,"").trim().replace(/\s+/g," ");
+  // Mapping khusus biar lebih akurat
+  if(key.includes("hijab")) key="hijab woman";
+  else if(key.includes("tas ransel")) key="backpack bag";
+  else if(key.includes("tas selempang")) key="sling bag woman";
+  else if(key.includes("celana jeans")) key="jeans pants";
+  else if(key.includes("jaket hoodie")) key="hoodie jacket";
+  else if(key.includes("dress")) key="dress woman fashion";
+  else if(key.includes("kaos")) key="tshirt man";
+  else if(key.includes("pupuk")) key="fertilizer agriculture";
+  else if(key.includes("bibit padi")) key="rice seedling";
+  else if(key.includes("bibit jagung")) key="corn seed";
+  else if(key.includes("bibit durian")) key="durian fruit";
+  else if(key.includes("bibit sawit")) key="palm oil seedling";
+  else if(key.includes("makanan kucing")) key="cat food";
+  else if(key.includes("kandang kucing")) key="cat cage";
+  else if(key.includes("pasir kucing")) key="cat litter";
+  else if(key.includes("kamera")) key="camera canon";
+  else if(key.includes("lensa")) key="camera lens";
+  else if(key.includes("speaker")) key="bluetooth speaker";
+  else if(key.includes("ps5")) key="playstation 5";
+  else if(key.includes("nintendo")) key="nintendo switch";
+  else if(key.includes("stik")) key="game controller";
+  else if(key.includes("ban motor")) key="motorcycle tire";
+  else if(key.includes("oli motor")) key="motor oil";
+  else if(key.includes("novel")) key="novel book";
+  else if(key.includes("pensil")) key="pencil";
+  else if(key.includes("popok")) key="baby diaper";
+  else if(key.includes("susu formula")) key="baby milk formula";
+  else if(key.includes("botol susu")) key="baby bottle";
+  else if(key.includes("serum")) key="face serum skincare";
+  else if(key.includes("lipstik")) key="lipstick makeup";
+  // Loremflickr akan cari foto sesuai keyword, jadi tiap nama beda fotonya
+  return "https://loremflickr.com/400/300/"+encodeURIComponent(key)+"?lock="+encodeURIComponent(nama);
 }
-function lihat(i){let p=window._f[i];document.getElementById('detailIsi').innerHTML=`<img src="${p.img}"><h2>${p.name}</h2><p style="color:#ee4d2d;font-weight:bold;font-size:20px;margin:0">${rupiah(p.harga)}</p><p style="color:#666">🏪 Seller: ${p.seller} • ${p.kat} • Stok Ada • Kirim 1-3 Hari • COD Bisa</p><p><b>Deskripsi:</b><br>${p.desk}</p><button style="width:100%;background:#ee4d2d;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:bold" onclick="addIdx(${i});tutup()">🛒 + KERANJANG - VIA ADMIN</button><button style="width:100%;background:#25D366;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:bold;margin-top:8px" onclick="beliLangsung(${i})">💬 BELI SEKARANG - WA ADMIN</button><button style="width:100%;background:#ddd;border:0;padding:10px;border-radius:10px;margin-top:8px" onclick="tutup()">TUTUP</button>`;document.getElementById('detail').style.display='block'}
-function tutup(){document.getElementById('detail').style.display='none'}
-function addIdx(i){cartList.push(window._f[i]);updateBar();alert(window._f[i].name+' masuk keranjang!')}
-function beliLangsung(i){let p=window._f[i];window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('Halo Admin VTC! Saya mau BELI (Model 1):\nBarang: '+p.name+'\nHarga: '+rupiah(p.harga)+'\nSeller: '+p.seller+'\nDeskripsi: '+p.desk+'\nTolong proses ya!'))}
-function updateBar(){let t=0;cartList.forEach(p=>t+=p.harga);document.getElementById('jml').innerText=cartList.length;document.getElementById('totalBar').innerText=rupiah(t)}
-function bukaCart(){let b=document.getElementById('cartBox');b.style.display=b.style.display=='block'?'none':'block';let t=0,h='';cartList.forEach(p=>{t+=p.harga;h+=`<div>${p.name} - ${rupiah(p.harga)}<br><small>${p.seller}</small></div><hr>`});document.getElementById('isiCart').innerHTML=h||'Keranjang masih kosong';document.getElementById('tot').innerText=rupiah(t)}
-function live(t){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('Halo Admin VTC! Saya mau NONTON LIVE: '+t))}
-function mintaBarang(){let q=document.getElementById('cari').value||'barang';window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('Halo Admin VTC! Saya cari:\nBarang: '+q+'\nTolong cariin Seller-nya!'))}
-function seller(brg){let p=brg?`Halo Admin VTC, saya mau JADI SELLER. Saya jual: ${brg}. Gimana caranya?`:`Halo Admin VTC, saya mau DAFTAR JADI SELLER GRATIS di VTC MEGA SHOP!`;window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(p))}
-function checkout(){let n=document.getElementById('nama').value;let a=document.getElementById('alamat').value;if(!n||!a){alert('Isi Nama & Alamat dulu!');return}if(cartList.length==0){alert('Keranjang kosong!');return}let o=parseInt(document.getElementById('ekspedisi').value);let e=document.getElementById('ekspedisi').options[document.getElementById('ekspedisi').selectedIndex].text;let t=0,m='Halo Admin VTC! Saya mau ORDER (MODEL 1 - VIA ADMIN):\n\n';cartList.forEach(p=>{t+=p.harga;m+=`• ${p.name} = ${rupiah(p.harga)} (Seller: ${p.seller})\n`});m+=`\nSubtotal: ${rupiah(t)}\nOngkir: ${rupiah(o)}\nTOTAL: ${rupiah(t+o)}\nEkspedisi: ${e}\nNama: ${n}\nAlamat: ${a}`;window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(m))}
-renderCat();tampil();
+function rupiah(n){return "Rp "+n.toLocaleString("id-ID")}
+let cats=["Semua","Pupuk","Bibit","Fashion","Tas","Kecantikan","Ibu, Bayi & Anak","Hewan","Elektronik","Gaming","Otomotif","Buku","Tiket"];
+document.getElementById("cats").innerHTML=cats.map(c=>`<button class="${c===filterCat?'on':''}" onclick="setCat('${c}')">${c}</button>`).join("");
+function setCat(c){filterCat=c;document.querySelectorAll(".cats button").forEach(b=>b.classList.toggle("on",b.textContent===c));render()}
+function cari(){filterQ=document.getElementById("q").value.toLowerCase();render()}
+function render(){
+  let list=DB.map((d,i)=>({kat:d[0],nama:d[1],toko:d[2],desc:d[3],price:harga(i),img:gambar(d[1],d[0]),idx:i}))
+  .filter(x=>(filterCat==="Semua"||x.kat===filterCat)&&(x.nama.toLowerCase().includes(filterQ)||x.kat.toLowerCase().includes(filterQ)||x.desc.toLowerCase().includes(filterQ)));
+  if(list.length===0) list=DB.map((d,i)=>({kat:d[0],nama:d[1],toko:d[2],desc:d[3],price:harga(i),img:gambar(d[1],d[0]),idx:i})).slice(0,20);
+  document.getElementById("list").innerHTML=list.map(x=>`<div class="card"><img src="${x.img}" onclick="detail(${x.idx})" onerror="this.src='https://picsum.photos/400/300?random=${x.idx}'"><h3>${x.nama}</h3><p class="pr">${rupiah(x.price)}</p><p class="tk">🏪 ${x.toko} • ${x.kat}</p><p class="ds">${x.desc}</p><button onclick="add(${x.idx})">+ KERANJANG - VIA ADMIN</button><button style="background:#fff;color:#ee4d2d;border:1px solid #ee4d2d" onclick="detail(${x.idx})">LIHAT DETAIL</button></div>`).join("");
+}
+function detail(i){let d=DB[i];let p=harga(i);document.getElementById("dCont").innerHTML=`<img src="${gambar(d[1],d[0])}"><h2>${d[1]}</h2><p style="color:#ee4d2d;font-size:20px;font-weight:bold">${rupiah(p)}</p><p>🏪 ${d[2]} • Kategori: ${d[0]}</p><p>${d[3]}</p><p>✅ Stok Ready • ✅ COD Bisa • ✅ Garansi Admin VTC</p><button class="btn orange" onclick="add(${i});closeAll();openCart()">+ KERANJANG</button><button class="btn green" onclick="wa('Halo Admin, saya mau beli: ${d[1]} - ${rupiah(p)}. Masih ready?')">BELI SEKARANG - WA ADMIN</button>`;document.getElementById("mDetail").classList.add("open")}
+function add(i){let d=DB[i];let ex=cart.find(c=>c.idx===i);if(ex)ex.qty++;else cart.push({idx:i,nama:d[1],price:harga(i),qty:1});upd()}
+function upd(){let c=cart.reduce((a,b)=>a+b.qty,0);let t=cart.reduce((a,b)=>a+b.price*b.qty,0);document.getElementById("cnt").innerText=c;document.getElementById("tot").innerText=rupiah(t)}
+function openCart(){let h="";if(cart.length===0)h="<p>Keranjang masih kosong. Pilih barang dulu ya.</p>";else h=cart.map((c,i)=>`<div style="display:flex;gap:8px;margin-bottom:8px"><img src="${gambar(c.nama,'')}" style="width:60px;height:60px;object-fit:cover;border-radius:8px"><div style="flex:1"><b>${c.nama}</b><br>${rupiah(c.price)} x ${c.qty} = <b>${rupiah(c.price*c.qty)}</b></div><button onclick="cart.splice(${i},1);upd();openCart()">❌</button></div>`).join("");document.getElementById("cCont").innerHTML=h;document.getElementById("mCart").classList.add("open")}
+function closeAll(){document.querySelectorAll(".modal").forEach(m=>m.classList.remove("open"))}
+function checkout(){let n=document.getElementById("nama").value;let a=document.getElementById("alamat").value;let e=document.getElementById("exp").value;if(!n||!a||cart.length===0){alert("Isi Nama, Alamat, dan pilih barang dulu ya!");return}let total=cart.reduce((s,c)=>s+c.price*c.qty,0);let msg=`Halo Admin VTC! Saya mau ORDER:\n\n`+cart.map(c=>`• ${c.nama} x${c.qty} = ${rupiah(c.price*c.qty)}`).join("\n")+`\n\nTotal: ${rupiah(total)}\nNama: ${n}\nAlamat: ${a}\nEkspedisi: ${e}\n\nTolong diproses ya, terima kasih!`;wa(msg)}
+render();
 </script></body></html>
