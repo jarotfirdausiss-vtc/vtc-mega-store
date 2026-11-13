@@ -1,53 +1,97 @@
-<!-- ATURAN COD VTC MEGA SHOP -->
-<div style="background:#FFF7ED; border:2px dashed #F97316; border-radius:16px; padding:16px; margin:16px 0; font-family:sans-serif;">
-  <h3 style="margin:0 0 8px; font-size:16px; color:#111;">📦 ATURAN COD - WAJIB BACA SEBELUM CHECKOUT</h3>
-  
-  <p style="margin:8px 0; font-size:14px; line-height:1.5;">
-    <b>1. COD KETEMU LANGSUNG (Cikupa / Bekasi)</b><br>
-    ✅ GRATIS - Tanpa syarat<br>
-    ✅ Bayar di tempat, barang cek dulu baru bayar<br>
-    ✅ Bisa nego di WA
-  </p>
-
-  <p style="margin:8px 0; font-size:14px; line-height:1.5;">
-    <b>2. COD VIA J&T / JNE (LEWAT KURIR)</b><br>
-    ✅ Bisa! Tapi ada syarat:<br>
-    - Min. order <b>Rp 25.000</b>, Max. <b>Rp 500.000</b> / paket<br>
-    - <b>Ongkir WAJIB bayar di depan</b> (Transfer / QRIS) - Harga barangnya aja yang bayar ke kurir<br>
-    - Wajib bayar <b>TUNAI & PENUH ke kurir</b>, gak boleh buka paket sebelum bayar<br>
-    - Kalo paket <b>DITOLAK / GAK ADA ORANG</b> = Ongkir <b>HANGUS</b>, gak bisa refund<br>
-    - Fee COD JNE 3% / J&T 4% ditanggung pembeli
-  </p>
-
-  <p style="margin:8px 0; font-size:14px; line-height:1.5; background:#fff; padding:8px; border-radius:8px;">
-    <b>Contoh:</b> Beli Bumbu Rendang Rp 50.000, Ongkir Rp 12.000<br>
-    → Bayar sekarang: Rp 12.000 (ongkir)<br>
-    → Bayar ke kurir nanti: Rp 50.000 + Fee COD Rp 3.500 = <b>Rp 53.500</b>
-  </p>
-
-  <label style="display:flex; gap:8px; align-items:flex-start; font-size:14px; margin-top:12px; cursor:pointer;">
-    <input type="checkbox" id="setujuCOD" style="width:18px; height:18px; margin-top:2px;">
-    <span>Saya sudah baca & <b>SETUJU</b> dengan aturan COD di atas. Saya paham kalo nolak paket, ongkir hangus.</span>
-  </label>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VTC MEGA SHOP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f5f5;padding-bottom:80px}
+.top{background:#ff3d00;color:white;padding:18px 12px;text-align:center}
+.top h1{font-size:32px}
+.live{display:flex;gap:10px;overflow-x:auto;padding:12px;background:#111}
+.live-card{min-width:180px;background:#222;color:white;border-radius:12px;padding:12px;text-align:center}
+.live-card button{background:#ff0000;color:white;border:none;padding:8px 15px;border-radius:20px;font-weight:bold;margin-top:8px;width:100%}
+.search{display:flex;gap:8px;padding:12px;background:white}
+.search input{flex:1;padding:13px;border:2px solid #ff3d00;border-radius:10px;font-size:15px}
+.search button{background:#ff3d00;color:white;border:none;padding:0 20px;border-radius:10px;font-weight:bold}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:10px;background:white;white-space:nowrap}
+.cats button{padding:9px 18px;border-radius:20px;border:1px solid #ff8a65;background:white;color:#e64a19}
+.cats button.aktif{background:#ff3d00;color:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
+.produk{background:white;border-radius:12px;overflow:hidden;padding-bottom:10px}
+.produk img{width:100%;height:140px;object-fit:cover}
+.produk h3{font-size:15px;padding:8px}
+.produk p{color:#ff3d00;font-weight:bold;padding:0 8px}
+.produk button{background:#ff3d00;color:white;border:none;width:calc(100% - 16px);margin:8px;padding:10px;border-radius:8px;font-weight:bold}
+.cod{background:#FFF7ED;border:2px dashed #FF3D00;border-radius:12px;padding:15px;margin:12px;font-size:14px;line-height:1.6;text-align:left}
+.cod h3{font-size:16px;margin-bottom:8px}
+.cart{position:fixed;bottom:0;left:0;right:0;background:#111;color:white;display:flex;justify-content:space-between;align-items:center;padding:12px 15px}
+.cart button{background:#00c853;color:white;border:none;padding:12px 18px;border-radius:8px;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="top"><h1>🛒 VTC MEGA SHOP</h1><p>SEMUA KATEGORI LENGKAP! • Semua Order Via 1 Admin - Aman • COD</p></div>
+<div class="live">
+<div class="live-card">🔴 LIVE<br><b>Seller Pupuk</b><br>Jam 08.00<br><button onclick="wa('Mau nonton Live Seller Pupuk')">NONTON LIVE</button></div>
+<div class="live-card">🔴 LIVE<br><b>Seller Bibit</b><br>Jam 10.00<br><button onclick="wa('Mau nonton Live Seller Bibit')">NONTON LIVE</button></div>
+<div class="live-card">🎬 LIVE<br><b>Drama</b><br>Jam 12.00<br><button onclick="wa('Mau nonton Drama')">NONTON</button></div>
+</div>
+<div class="search"><input id="cari" onkeyup="filterCari()" placeholder="Cari SEMUA: pupuk, bibit, ban, semen, kurma..."><button onclick="filterCari()">CARI</button></div>
+<div class="cats">
+<button class="aktif" onclick="filterKat('all',this)">Semua</button>
+<button onclick="filterKat('fashion',this)">Fashion</button>
+<button onclick="filterKat('kecantikan',this)">Kecantikan</button>
+<button onclick="filterKat('bayi',this)">Ibu, Bayi & Anak</button>
+<button onclick="filterKat('rumah',this)">Rumah Tangga</button>
+<button onclick="filterKat('teknologi',this)">Teknologi</button>
+<button onclick="filterKat('otomotif',this)">Otomotif</button>
+</div>
+<div class="grid">
+<div class="produk" data-kat="fashion"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400"><h3>Kaos Polos Premium - Putih</h3><p>Rp 45.000</p><button onclick="tambah('Kaos Polos Premium',45000)">+ KERANJANG</button></div>
+<div class="produk" data-kat="rumah"><img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400"><h3>Bibit Tanaman - Pohon Mangga</h3><p>Rp 25.000</p><button onclick="tambah('Bibit Mangga',25000)">+ KERANJANG</button></div>
+<div class="produk" data-kat="rumah"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400"><h3>Pupuk Organik 5kg</h3><p>Rp 35.000</p><button onclick="tambah('Pupuk Organik 5kg',35000)">+ KERANJANG</button></div>
+<div class="produk" data-kat="otomotif"><img src="https://images.unsplash.com/photo-1578844251758-2f71da6b7a04?w=400"><h3>Ban Motor Tubeless</h3><p>Rp 180.000</p><button onclick="tambah('Ban Motor',180000)">+ KERANJANG</button></div>
+<div class="produk" data-kat="rumah"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400"><h3>Bumbu Rendang 500gr</h3><p>Rp 50.000</p><button onclick="tambah('Bumbu Rendang',50000)">+ KERANJANG</button></div>
+<div class="produk" data-kat="teknologi"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"><h3>Handphone Android 4GB</h3><p>Rp 1.250.000</p><button onclick="tambah('Handphone Android',1250000)">+ KERANJANG</button></div>
 </div>
 
+<!-- ATURAN COD - PERSIS SCREENSHOT LO -->
+<div class="cod">
+<h3>📦 ATURAN COD - WAJIB BACA SEBELUM CHECKOUT</h3>
+<b>1. COD KETEMU LANGSUNG (Cikupa / Bekasi)</b><br>
+✅ GRATIS - Tanpa syarat<br>
+✅ Bayar di tempat, barang cek dulu baru bayar<br>
+✅ Bisa nego di WA<br><br>
+<b>2. COD VIA J&T & JNE (LEWAT KURIR)</b><br>
+✅ Bisa! Tapi ada syarat:<br>
+- Min. order <b>Rp 25.000</b>, Max. <b>Rp 500.000</b> / paket<br>
+- Ongkir <b>WAJIB</b> bayar di depan (Transfer / QRIS) - Harga barangnya aja yang bayar ke kurir<br>
+- Wajib bayar <b>TUNAI & PENUH</b> ke kurir, gak boleh buka paket sebelum bayar<br>
+- Kalo paket <b>DITOLAK / GAK ADA ORANG</b> = Ongkir <b>HANGUS</b>, gak bisa refund<br>
+- Fee COD JNE 3% / J&T 4% ditanggung pembeli<br><br>
+<div style="background:white;padding:10px;border-radius:8px;">
+<b>Contoh:</b> Beli Bumbu Rendang Rp 50.000, Ongkir Rp 12.000<br>
+→ Bayar sekarang: Rp 12.000 (ongkir)<br>
+→ Bayar ke kurir nanti: Rp 50.000 + Fee COD Rp 3.500 = <b>Rp 53.500</b>
+</div><br>
+<label style="display:flex;gap:8px;align-items:flex-start;">
+<input type="checkbox" id="setujuCOD" style="width:20px;height:20px;margin-top:2px;">
+<span>Saya sudah baca & <b>SETUJU</b> dengan aturan COD di atas. Saya paham kalo nolak paket, ongkir hangus.</span>
+</label>
+</div>
+
+<div class="cart"><b>🛒 <span id="jml">0</span> • Rp <span id="total">0</span></b><button id="btnCheckout" onclick="checkout()">LIHAT KERANJANG</button></div>
 <script>
-  // Biar tombol checkout gak bisa diklik kalo belum centang
-  const checkbox = document.getElementById('setujuCOD');
-  const tombolCheckout = document.querySelector('a[href*="wa.me"], button#checkout, #btnCheckout');
-  
-  // Cari tombol WA lo - ganti ID ini kalo nama tombol lo beda
-  if(tombolCheckout){
-    tombolCheckout.style.opacity = '0.5';
-    tombolCheckout.style.pointerEvents = 'none';
-    checkbox.addEventListener('change', function(){
-      if(this.checked){
-        tombolCheckout.style.opacity = '1';
-        tombolCheckout.style.pointerEvents = 'auto';
-      } else {
-        tombolCheckout.style.opacity = '0.5';
-        tombolCheckout.style.pointerEvents = 'none';
-      }
-    });
-  }
+let keranjang=[]; let total=0;
+function wa(pesan){ window.open('https://wa.me/6281234567890?text='+encodeURIComponent(pesan)); }
+function tambah(nama,harga){ keranjang.push(nama); total+=harga; document.getElementById('jml').innerText=keranjang.length; document.getElementById('total').innerText=total.toLocaleString('id-ID'); alert(nama+' ditambah!'); }
+function checkout(){ if(keranjang.length==0){alert('Keranjang masih kosong!');return;} wa('Halo VTC MEGA SHOP, saya mau order:\n- '+keranjang.join('\n- ')+'\nTotal: Rp '+total.toLocaleString('id-ID')); }
+function filterCari(){ let k=document.getElementById('cari').value.toLowerCase(); document.querySelectorAll('.produk').forEach(p=>{ p.style.display=p.innerText.toLowerCase().includes(k)?'':'none'; }); }
+function filterKat(kat,btn){ document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('aktif')); btn.classList.add('aktif'); document.querySelectorAll('.produk').forEach(p=>{ p.style.display=(kat=='all'||p.dataset.kat==kat)?'':'none'; }); }
+const checkbox=document.getElementById('setujuCOD'); const tombolCheckout=document.getElementById('btnCheckout');
+tombolCheckout.style.opacity='0.5'; tombolCheckout.style.pointerEvents='none';
+checkbox.addEventListener('change',function(){ if(this.checked){tombolCheckout.style.opacity='1';tombolCheckout.style.pointerEvents='auto';} else {tombolCheckout.style.opacity='0.5';tombolCheckout.style.pointerEvents='none';} });
 </script>
+</body>
+</html>
