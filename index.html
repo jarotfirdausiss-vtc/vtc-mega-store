@@ -3,172 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VTC MEGA STORE - Satu App Semua Bisa</title>
+<title>VTC MEGA SHOP - Lebih Untung Dari Shopee</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f2f2f2;padding-bottom:85px}
-.top{background:#FF6600;color:#fff;padding:12px;position:sticky;top:0;z-index:10}
-.cari{display:flex;gap:6px;background:#fff;padding:5px;border-radius:25px;margin-top:10px;position:relative}
-.cari input{flex:1;border:0;outline:0;padding:11px;font-size:15px}
-.cari button{background:#FF6600;color:#fff;border:0;padding:11px 16px;border-radius:20px;font-weight:bold;cursor:pointer}
-.saran{background:#fff;border-radius:0 0 12px 12px;box-shadow:0 4px 20px rgba(0,0,0,.25);display:none;position:absolute;left:0;right:0;top:100%;z-index:30;color:#000}
-.saran div{padding:11px;border-bottom:1px solid #eee;cursor:pointer}
-.card{background:#fff;margin:10px;padding:14px;border-radius:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.item{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #eee;cursor:pointer}
-.foto{height:135px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:8px}
-.isi{padding:8px}.nama{font-size:13px;font-weight:bold;min-height:32px;display:block}
-.harga{color:#FF6600;font-weight:bold}
-input,select,textarea{width:100%;padding:11px;margin:5px 0;border:1px solid #ddd;border-radius:8px}
-.btn{width:100%;background:#FF6600;color:#fff;border:0;padding:12px;border-radius:8px;font-weight:bold;margin:5px 0;cursor:pointer}
-.btn2{width:100%;background:#fff;color:#FF6600;border:1px solid #FF6600;padding:11px;border-radius:8px;margin:5px 0;cursor:pointer}
-.btm{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:9px 0;border-top:1px solid #ddd;z-index:20}
-.btm div{cursor:pointer;text-align:center;font-size:11px}.btm div.on{color:#FF6600;font-weight:bold}
-.hal{display:none}.hal.on{display:block}
-#toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:11px 18px;border-radius:25px;display:none;z-index:99;max-width:90%;text-align:center}
-.otp-box{background:#FFF8E1;border:2px dashed #FF6600;border-radius:10px;padding:12px;text-align:center}
-.tab-cari{display:flex;gap:8px;margin:8px 0}
-.tab-cari button{flex:1;border:1px solid #FF6600;background:#fff;color:#FF6600;padding:9px;border-radius:20px;font-weight:bold;cursor:pointer}
-.tab-cari button.on{background:#FF6600;color:#fff}
-.chip{display:inline-block;background:#eee;padding:5px 9px;border-radius:12px;font-size:11px;margin:2px;cursor:pointer}
-.chip.on{background:#FF6600;color:#fff}
-.judul-merah{background:#FF6600;color:#fff;display:inline-block;padding:5px 12px;font-weight:bold;font-size:13px;border-radius:0 0 8px 0;margin:-14px 0 10px -14px}
-.badge{background:#00A99D;color:#fff;padding:3px 7px;border-radius:5px;font-size:11px;font-weight:bold}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f5f5}
+.header{background:#ee4d2d;color:white;padding:12px 15px;position:sticky;top:0;z-index:100}
+.header h1{font-size:20px}
+.header p{font-size:12px;opacity:.9}
+.search-box{background:white;padding:10px;display:flex;gap:8px;position:sticky;top:52px;z-index:99;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+.search-box input{flex:1;padding:10px;border:1px solid #ddd;border-radius:8px;outline:none}
+.search-box button{background:#ee4d2d;color:white;border:none;padding:10px 15px;border-radius:8px;font-weight:bold}
+.cat{display:flex;gap:8px;overflow-x:auto;padding:10px;background:white}
+.cat button{white-space:nowrap;padding:8px 14px;border:1px solid #ee4d2d;border-radius:20px;background:white;color:#ee4d2d;font-weight:bold;cursor:pointer}
+.cat button.active{background:#ee4d2d;color:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card img{width:100%;height:150px;object-fit:cover}
+.card-body{padding:10px}
+.card-body h3{font-size:13px;height:32px;overflow:hidden}
+.price{color:#ee4d2d;font-weight:bold;font-size:15px;margin:5px 0}
+.sold{font-size:11px;color:#888}
+.btn-add{width:100%;background:#ee4d2d;color:white;border:none;padding:9px;border-radius:8px;font-weight:bold;margin-top:6px}
+.cart-bar{position:fixed;bottom:0;left:0;right:0;background:#111;color:white;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;z-index:200}
+.cart-bar button{background:#25D366;color:white;border:none;padding:10px 18px;border-radius:8px;font-weight:bold}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;align-items:flex-end}
+.modal.open{display:flex}
+.modal-box{background:white;width:100%;max-height:85vh;overflow:auto;border-radius:20px 20px 0 0;padding:20px}
+.modal-box input,.modal-box select,.modal-box textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:8px}
+.cart-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:13px}
+.qty button{padding:2px 8px;margin:0 3px}
+.checkout{background:#25D366;color:white;border:none;width:100%;padding:13px;border-radius:10px;font-weight:bold;font-size:15px;margin-top:10px}
+.close{background:#eee;border:none;width:100%;padding:10px;border-radius:10px;margin-top:8px}
+.badge{background:#ffe600;color:#111;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:bold}
 </style>
-<script async src="https://cse.google.com/cse.js?cx=4467067206192af9f"></script>
 </head>
 <body>
-<div id="toast"></div>
-<div id="login" style="display:none">
-<div style="text-align:center;padding:20px;background:#FF6600;color:#fff"><h2>VTC MEGA STORE</h2><p>Satu App Semua Bisa - Semua Ada Semua Bisa</p></div>
-<div style="text-align:center;padding:14px"><div style="width:90px;height:90px;background:#FF6600;border-radius:18px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff"><b style="font-size:48px">V</b><span style="font-size:12px">VTC SHOP</span></div><h1>VTC MEGA STORE</h1><p style="font-size:12px;color:#666">Login / Daftar Pakai Kode OTP - Aman</p></div>
-<div class="card"><div style="display:flex;gap:6px"><button class="btn" onclick="switchAuth('login')">LOGIN</button><button class="btn2" onclick="switchAuth('daftar')">DAFTAR</button></div>
-<div id="boxLogin"><input id="hpLogin" placeholder="No HP - Contoh 083878502333" value="083878502333"><input id="passLogin" type="password" placeholder="Password"><button class="btn" onclick="kirimOTP('login')">KIRIM KODE OTP</button><div id="otpLoginBox" style="display:none"><div class="otp-box"><b>KODE OTP KAMU</b><h1 id="otpLoginTampil" style="color:#FF6600;letter-spacing:8px">------</h1></div><input id="inputOTPLogin" placeholder="Masukkan 6 Digit OTP" maxlength="6"><button class="btn" onclick="cekOTP('login')">VERIFIKASI OTP & MASUK</button></div><button class="btn2" onclick="loginSosmed()">Login dengan Google</button></div>
-<div id="boxDaftar" style="display:none"><input id="namaDaftar" placeholder="Nama Lengkap"><input id="hpDaftar" placeholder="No HP Asli"><input id="emailDaftar" placeholder="Email"><input id="passDaftar" type="password" placeholder="Password"><select id="roleDaftar"><option value="Pembeli">Pembeli - Mau Beli</option><option value="Seller">Seller / Toko - Mau Jualan</option><option value="Affiliate">Affiliate - Komisi + Extra Bonus Tanpa Stok!</option><option value="Warung">Warung / UMKM</option><option value="Kurir">Kurir - JNE / GoSend</option><option value="Jasa">Jasa</option></select><select id="provDaftar"><option>Bangka Belitung</option><option>DKI Jakarta</option><option>Jawa Barat</option><option>Jawa Tengah</option><option>Jawa Timur</option><option>Sumatera Utara</option><option>Aceh</option><option>Bali</option></select><button class="btn" onclick="kirimOTP('daftar')">KIRIM KODE OTP & DAFTAR</button><div id="otpDaftarBox" style="display:none"><div class="otp-box"><h1 id="otpDaftarTampil" style="color:#FF6600;letter-spacing:8px">------</h1></div><input id="inputOTPDaftar" placeholder="Masukkan 6 Digit OTP" maxlength="6"><button class="btn" onclick="cekOTP('daftar')">VERIFIKASI OTP & DAFTAR</button></div></div></div>
-<div class="card" style="text-align:center"><b> AFFILIATE + EXTRA BONUS + KOMISI!</b><br><span style="font-size:12px">Komisi 5% + Extra Bonus Rp5.000 / Transaksi + Bonus Level 1%! Tanpa Stok!</span></div>
+<div class="header">
+<h1>🛒 VTC MEGA SHOP</h1>
+<p>0% Potongan Admin • Fast Respon WA • COD Se-Indonesia • Kirim 1-3 Hari</p>
 </div>
-<div id="app" style="display:block">
-<div class="top"><div style="display:flex;align-items:center;gap:10px"><div style="width:44px;height:44px;background:#FF6600;border:2px solid #fff;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1"><b style="font-size:22px">V</b><span style="font-size:7px">VTC SHOP</span></div><div><h1 style="font-size:17px">VTC MEGA STORE</h1><p style="font-size:11px">Semua Ada Semua Bisa</p></div><div style="margin-left:auto;text-align:right;font-size:11px"> <b id="saldoTxt" style="color:#FFE600">Rp 0</b><br> Bonus: <b id="bonusTxt" style="color:#FFE600">Rp 0</b></div></div>
-<div class="cari"><span style="padding:8px"></span><input id="cari" placeholder="Cari apa aja: topi, baju, kulkas, motor, alat..." oninput="saranCari()" onkeydown="if(event.key=='Enter')doCari()"><button onclick="doCari()">Cari</button><div id="boxSaran" class="saran"></div></div>
-<div class="tab-cari"><button id="btnVTC" class="on" onclick="setMode('vtc')"> VTC - Barang Seller</button><button id="btnGoogle" onclick="setMode('google')"> GOOGLE - Cari Apapun!</button></div>
-<p style="font-size:11px">Halo <b id="namaAtas">Teman VTC</b> | <span id="roleAtas">Pembeli</span> |  <b id="cartAtas">0</b> | Affiliate: <b id="affTxt">Rp 0</b></p></div>
-<div id="h-home" class="hal on">
-<div class="card" style="background:linear-gradient(135deg,#FF2200,#FF6600);color:#fff"><h1 style="font-size:26px">SATU APP<br>SEMUA BISA</h1><p style="font-size:12px">Semua jenis kebutuhan: Barang, Produk, Alat, dll! Cari apapun, ada semua!</p><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span style="background:#fff;color:#FF2200;padding:6px 10px;border-radius:15px;font-size:12px;cursor:pointer" onclick="cariLangsungGoogle('topi')"> Topi</span><span style="background:#fff;color:#FF2200;padding:6px 10px;border-radius:15px;font-size:12px;cursor:pointer" onclick="cariLangsung('baju')"> Baju</span><span style="background:#fff;color:#FF2200;padding:6px 10px;border-radius:15px;font-size:12px;cursor:pointer" onclick="cariLangsung('celana pendek loreng tentara')"> Celana Loreng</span><span style="background:#fff;color:#FF2200;padding:6px 10px;border-radius:15px;font-size:12px;cursor:pointer" onclick="cariLangsungGoogle('kulkas')"> Kulkas</span><span style="background:#fff;color:#FF2200;padding:6px 10px;border-radius:15px;font-size:12px;cursor:pointer" onclick="cariLangsungGoogle('alat')"> Alat</span><span style="background:#fff;color:#FF2200;padding:6px 10px;border-radius:15px;font-size:12px;cursor:pointer" onclick="cariLangsungGoogle('motor')"> Motor</span></div></div>
-<div class="card"><span class="judul-merah">KATEGORI - SEMUA JENIS KEBUTUHAN!</span><div style="display:flex;gap:8px;overflow-x:auto;margin-top:8px"><div style="min-width:75px;text-align:center;background:#FFF0E6;padding:12px;border-radius:10px;cursor:pointer" onclick="cariLangsung('baju')"><div style="font-size:28px"></div><span style="font-size:11px">Fashion</span></div><div style="min-width:75px;text-align:center;background:#FFF0E6;padding:12px;border-radius:10px;cursor:pointer" onclick="cariLangsungGoogle('elektronik')"><div style="font-size:28px"></div><span style="font-size:11px">Elektronik</span></div><div style="min-width:75px;text-align:center;background:#FFF0E6;padding:12px;border-radius:10px;cursor:pointer" onclick="cariLangsungGoogle('sembako')"><div style="font-size:28px"></div><span style="font-size:11px">Sembako</span></div><div style="min-width:75px;text-align:center;background:#FFF0E6;padding:12px;border-radius:10px;cursor:pointer" onclick="cariLangsungGoogle('alat')"><div style="font-size:28px"></div><span style="font-size:11px">Alat</span></div><div style="min-width:75px;text-align:center;background:#FFF0E6;padding:12px;border-radius:10px;cursor:pointer" onclick="cariLangsung('pancing')"><div style="font-size:28px"></div><span style="font-size:11px">Pancing</span></div><div style="min-width:75px;text-align:center;background:#FFF0E6;padding:12px;border-radius:10px;cursor:pointer" onclick="cariLangsungGoogle('motor')"><div style="font-size:28px"></div><span style="font-size:11px">Motor</span></div><div style="min-width:75px;text-align:center;background:#FFF0E6;padding:12px;border-radius:10px;cursor:pointer" onclick="cariLangsungGoogle('jasa')"><div style="font-size:28px"></div><span style="font-size:11px">Jasa</span></div></div></div>
-<div class="card"><span class="judul-merah"> FLASH SALE</span><div style="background:linear-gradient(135deg,#FF0000,#FF6600);color:#fff;border-radius:12px;padding:14px"><div style="display:flex;justify-content:space-between"><h3>FLASH SALE</h3><b id="timerFlash">02:59:59</b></div><div class="grid" id="listFlash" style="margin-top:10px"></div></div></div>
-<div class="card"><span class="judul-merah"> AFFILIATE + EXTRA BONUS + KOMISI</span><div style="background:#FFF8E1;padding:12px;border-radius:10px"><b>Dapat Komisi 5% + Extra Bonus!</b><br><span style="font-size:12px">Komisi kamu: <b id="komisiHome">Rp 0</b> | Extra Bonus: <b id="bonusHome">Rp 0</b><br> Komisi 5% tiap orang beli lewat link kamu<br> Extra Bonus Rp5.000 / transaksi pertama<br> Bonus Level: Ajak teman jadi Affiliate, dapat 1% lagi!</span><br><button class="btn2" onclick="jadiAffiliate()">Jadi Affiliate - GRATIS - Dapat Bonus!</button></div></div>
-<div class="card"><span class="judul-merah"> LIVE - SELLER LIVE JUALAN!</span><div style="background:#000;color:#fff;border-radius:12px;padding:14px;text-align:center"><div style="font-size:42px"></div><b>LIVE: Seller Live Jualan!</b><br><button class="btn" onclick="nontonLive()"> Masuk Live - Dapat Voucher Live!</button></div><button class="btn2" onclick="mulaiLive()">Saya Seller Mau Live - GRATIS!</button></div>
-<div class="card"><span class="judul-merah">PRODUK SELLER - BEBAS PILIH DESAIN, UKURAN, WARNA!</span><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"><select id="urutHome" onchange="gambarAll()" style="width:auto;flex:1"><option value="teratas"> Teratas</option><option value="murah"> Termurah - Termahal</option><option value="mahal"> Termahal - Termurah</option></select><select id="filterKatHome" onchange="gambarAll()" style="width:auto;flex:1"><option value="semua">Semua Kategori</option><option value="fashion">Fashion</option><option value="elektronik">Elektronik</option><option value="sembako">Sembako</option><option value="alat">Alat</option><option value="pancing">Pancing</option></select></div><div class="grid" id="listProduk"></div></div>
+<div class="search-box">
+<input id="search" placeholder="Cari: baju, hp, sepatu..." oninput="render()">
+<button onclick="render()">CARI</button>
 </div>
-<div id="h-search" class="hal"><div class="card"><button onclick="pindah('h-home')" style="border:0;background:#eee;padding:8px 12px;border-radius:50%"></button><p id="infoCari" style="font-size:12px;margin:8px 0"></p><div class="tab-cari"><button id="btnVTC2" class="on" onclick="setMode('vtc');doCari()"> VTC</button><button id="btnGoogle2" onclick="setMode('google');doCari()"> GOOGLE</button></div><div style="display:flex;gap:6px;flex-wrap:wrap"><select id="urutCari" onchange="doCari()" style="width:auto;flex:1"><option value="teratas"> Teratas</option><option value="murah"> Termurah - Termahal</option><option value="mahal"> Termahal - Termurah</option></select><select id="filterWarna" onchange="doCari()" style="width:auto;flex:1"><option value="Semua">Semua Warna</option><option value="Hitam">Hitam</option><option value="Loreng">Loreng</option><option value="Hijau">Hijau Army</option><option value="Putih">Putih</option><option value="Biru">Biru</option></select><select id="filterUkuran" onchange="doCari()" style="width:auto;flex:1"><option value="Semua">Semua Ukuran</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="28">28</option><option value="30">30</option><option value="32">32</option></select></div><div id="hasilVTC" style="margin-top:10px"></div><div id="hasilGoogle" style="display:none;margin-top:10px"><div style="background:#FFF0E6;padding:10px;border-radius:10px;font-size:12px">Hasil di bawah dari <b>Google yang ditempel di VTC</b>! Cari apapun, ada semua, sesuai keinginan! Klik hasil, langsung kebuka!</div><div class="gcse-search"></div><div style="margin-top:10px"><b> Hasil Google untuk "<span id="qGoogleTxt"></span>":</b><br><iframe id="frameGoogle" src="" style="width:100%;height:550px;border:1px solid #ddd;border-radius:12px;margin-top:8px"></iframe><br><button class="btn2" onclick="bukaGoogleLuar()">Buka Hasil Google di Tab Baru </button><button class="btn2" onclick="cariDiShopee()">Cari di Shopee </button></div></div><div id="orangCari" style="margin-top:12px"></div></div></div>
-<div id="h-pasar" class="hal">
-<div class="card"><h3> Seller Centre - Pasar Online VTC</h3><p id="sellerContent"></p></div>
-<div class="card"><h3> JUAL BARANG - SELLER MULAI JUALAN! SEMUA JENIS BISA!</h3><p style="font-size:12px">Barang, Produk, Alat, Jasa, dll - Isi Desain, Ukuran, Warna, biar pembeli bebas pilih!</p><input id="namaJual" placeholder="Nama Barang: Topi, Baju, Kulkas, Alat Bor, dll"><input id="desainJual" placeholder="Desain: Loreng, Polos, Garis, dll"><input id="ukuranJual" placeholder="Ukuran: S,M,L,XL / 28,30,32 - Pisah koma"><input id="warnaJual" placeholder="Warna: Loreng, Hitam, Hijau - Pisah koma"><input id="hargaJual" type="number" placeholder="Harga Jual - Contoh 75000"><input id="stokJual" type="number" placeholder="Stok"><label><input type="checkbox" id="codJual" checked style="width:auto">  COD</label> <label><input type="checkbox" id="codCekJual" checked style="width:auto">  COD Cek Dulu</label> <label><input type="checkbox" id="gosendJual" checked style="width:auto">  GoSend</label><br><select id="katJual"><option value="fashion">Fashion - Baju / Celana / Jaket / Sepatu / Tas / Topi</option><option value="elektronik">Elektronik - HP / Kulkas / TV</option><option value="sembako">Sembako / Makanan</option><option value="alat">Alat - Bor / Kunci / Tukang</option><option value="pancing">Pancing / Hobi</option><option value="motor">Motor / Otomotif</option><option value="jasa">Jasa</option><option value="lainnya">Lainnya</option></select><select id="provJual"><option>Bangka Belitung</option><option>DKI Jakarta</option><option>Jawa Barat</option><option>Jawa Tengah</option><option>Jawa Timur</option><option>Sumatera Utara</option><option>Aceh</option><option>Bali</option></select><button class="btn" onclick="jual()">TAYANGKAN - PEMBELI BEBAS PILIH!</button></div>
-<div class="card"><h3>Toko Saya</h3><p id="sellerDash">Belum ada barang.</p><div id="duitSellerBox" style="background:#E8FFF0;padding:10px;border-radius:8px;font-size:12px"></div><button class="btn2" onclick="tarikSaldo()">Tarik Saldo ke Rekening</button></div>
+<div class="cat" id="cats">
+<button class="active" onclick="setCat('Semua',this)">Semua</button>
+<button onclick="setCat('Fashion',this)">👕 Fashion</button>
+<button onclick="setCat('Elektronik',this)">📱 Elektronik</button>
+<button onclick="setCat('Makanan',this)">🍜 Makanan</button>
+<button onclick="setCat('Kecantikan',this)">💄 Kecantikan</button>
+<button onclick="setCat('Rumah',this)">🏠 Rumah</button>
 </div>
-<div id="h-pesanan" class="hal">
-<div class="card"><h3> Keranjang - Tambah Keranjang!</h3><div id="listCart">Kosong</div></div>
-<div class="card"><h3>Checkout - COD + JNE + GoSend + VTC Protect!</h3><div style="background:#E8FFF0;padding:12px;border-radius:10px"><span style="font-size:12px" id="rincianOtomatis">Subtotal: Rp 0</span><br><br><label><input type="radio" name="kirim" value="JNE Reguler - COD BISA" checked> JNE Reguler - COD  - Rp9.000 - COD Cek Dulu </label><br><label><input type="radio" name="kirim" value="J&T Express - COD BISA"> J&T Express - COD  - Rp8.000</label><br><label><input type="radio" name="kirim" value="GoSend - COD BISA"> GoSend - COD  - Rp12.000 - Instant 2 Jam! </label><br><label><input type="radio" name="kirim" value="GrabExpress - COD BISA"> GrabExpress - COD  - Rp13.000</label><br><label><input type="radio" name="kirim" value="VTC Express - COD BISA"> VTC Express - COD  - Rp8.000</label><br><label><input type="radio" name="kirim" value="Pos Indonesia - COD BISA"> Pos Indonesia - COD  - Rp7.000</label><br>Voucher: <b id="voucherVTC">-</b> | <b id="voucherToko">-</b> | <b id="voucherOngkir">-</b></div><p style="margin-top:8px">Subtotal: <b id="subtotal">Rp 0</b> | Ongkir: <b id="ongkirTxt">Rp 0</b> | Komisi VTC: <b id="komisiTxtCheckout">Rp 0</b> | Admin: <b id="adminTxtCheckout">Rp 0</b></p><p>Total COD: <b id="grand" style="font-size:18px;color:#FF6600">Rp 0</b></p><p id="sellerTerimaTxt" style="font-size:12px;background:#FFF0E6;padding:8px;border-radius:8px"></p><select id="bayarCheckout"><option>COD Biasa - Bayar Dulu, Baru Buka</option><option>COD Cek Dulu - Buka Dulu, Cek, Baru Bayar</option><option>VTC Pay</option><option>Transfer Bank</option><option>QRIS</option></select><input id="alamatCheckout" placeholder="Nama, No HP, Jalan, Kec, Kota, Provinsi"><button class="btn" onclick="checkout()">BUAT PESANAN - AMAN LEWAT VTC PROTECT!</button></div>
-<div class="card"><h3>Lacak Resi - JNE / J&T / GoSend</h3><input id="cariResi" placeholder="Resi VTC / JNE / GoSend..."><button class="btn2" onclick="lacak()">LACAK RESI</button><p id="hasilLacak"></p></div>
-<div class="card"><h3>Riwayat Pesanan</h3><p id="riwayat">Belum ada pesanan.</p><button class="btn2" onclick="konfirmasiTerima()"> Saya Sudah Terima - Teruskan Uang ke Seller!</button></div>
+<div class="grid" id="grid"></div>
+<div style="padding:10px 15px 90px;text-align:center">
+<h3>Mau Jualan GRATIS Tanpa Potongan?</h3>
+<p style="font-size:13px;color:#666;margin:5px 0 10px">Di Shopee dipotong 10%. Di sini 0%. Duit 100% buat kamu.</p>
+<button onclick="sellerWA()" style="background:#111;color:white;padding:12px 20px;border:none;border-radius:10px;font-weight:bold;width:100%">DAFTAR JADI SELLER - GRATIS</button>
 </div>
-<div id="h-saya" class="hal">
-<div class="card" style="text-align:center"><div style="width:90px;height:90px;background:#FF6600;border-radius:18px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff"><b style="font-size:48px">V</b><span style="font-size:12px">VTC SHOP</span></div><h3 id="profilNama">VTC</h3><p id="profilDetail"></p><p> Duit VTC: <b id="saldoProfil">Rp 0</b> |  Bonus: <b id="bonusProfil">Rp 0</b> | Komisi Affiliate: <b id="affProfil">Rp 0</b></p><button class="btn" onclick="downloadApp()">DOWNLOAD APLIKASI VTC</button><button class="btn2" onclick="bagikan()">Bagikan VTC - Dapat Bonus!</button></div>
-<div class="card"><h3> Affiliate + Extra Bonus + Komisi + Market Lain</h3><p style="font-size:13px;line-height:1.7"> <b>Affiliate:</b> Bagikan link barang, dapat 5%!<br> <b>Extra Bonus:</b> Rp5.000 tiap transaksi pertama dari link kamu!<br> <b>Bonus Level:</b> Ajak teman jadi Affiliate, dapat 1% dari komisi teman!<br> <b>Market Lain:</b> Pulsa, PPOB, Emas, Jasa, Grosir, Warung - Semua Ada di VTC!<br> <b>Komisi VTC:</b> 5% - Otomatis & Transparan - Ongkir 100% buat Kurir!</p></div>
+<div class="cart-bar">
+<div>🛒 <span id="cartCount">0</span> barang • <b id="cartTotal">Rp 0</b></div>
+<button onclick="openCart()">LIHAT KERANJANG</button>
 </div>
-<div class="btm"><div class="on" onclick="pindah('h-home',this)">Home</div><div onclick="pindah('h-pasar',this)">Seller Centre</div><div onclick="pindah('h-pesanan',this)"> Keranjang</div><div onclick="pindah('h-saya',this)">Saya</div></div>
+<div class="modal" id="modal">
+<div class="modal-box">
+<h2>Keranjang Kamu</h2>
+<div id="cartList"></div>
+<h3 style="margin-top:10px">Data Pembeli</h3>
+<input id="nama" placeholder="Nama Lengkap">
+<input id="alamat" placeholder="Alamat Lengkap + Patokan">
+<label style="font-size:13px;font-weight:bold">Ekspedisi - COD BISA (Estimasi 1-3 Hari)</label>
+<select id="ekspedisi">
+<option value="JNE Reguler - Rp9.000 - 2-3 Hari" data-ongkir="9000">JNE Reguler - COD BISA - Rp9.000 - 2-3 Hari</option>
+<option value="J&T Express - Rp8.000 - 1-3 Hari" data-ongkir="8000">J&T Express - COD BISA - Rp8.000 - 1-3 Hari</option>
+<option value="GoSend - Rp12.000 - 1 Hari" data-ongkir="12000">GoSend - COD BISA - Rp12.000 - 1 Hari</option>
+<option value="GrabExpress - Rp13.000 - 1 Hari" data-ongkir="13000">GrabExpress - COD BISA - Rp13.000 - 1 Hari</option>
+<option value="VTC Express - Rp8.000 - 1-3 Hari" data-ongkir="8000">VTC Express - COD BISA - Rp8.000 - 1-3 Hari</option>
+<option value="Pos Indonesia - Rp7.000 - 2-3 Hari" data-ongkir="7000">Pos Indonesia - COD BISA - Rp7.000 - 2-3 Hari</option>
+</select>
+<select id="bayar"><option>COD Cek Dulu - Buka Dulu, Cek, Baru Bayar</option><option>COD Biasa - Bayar Dulu, Baru Buka</option><option>Transfer Bank</option><option>QRIS</option></select>
+<textarea id="catatan" placeholder="Catatan (opsional)"></textarea>
+<button class="checkout" onclick="checkout()">CHECKOUT VIA WHATSAPP ✅</button>
+<button class="close" onclick="closeCart()">Tutup</button>
 </div>
-<div id="modal" onclick="if(event.target==this)tutup()" style="position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-end;z-index:999"><div style="background:#fff;width:100%;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:16px"><div style="display:flex;justify-content:space-between"><h3 id="mN"></h3><button onclick="tutup()" style="border:0;background:#eee;padding:8px 12px;border-radius:50%"></button></div><div id="mFoto" style="height:170px;border-radius:12px;margin:10px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:12px"></div><div id="mH" style="color:#FF6600;font-weight:bold;font-size:20px"></div><div id="mVarian" style="font-size:12px;line-height:1.7;margin:8px 0"></div><div id="mPilih" style="background:#FFF0E6;padding:10px;border-radius:10px"></div><div id="mToko" style="background:#fff7f0;padding:10px;border-radius:10px;margin:8px 0"></div><div id="mAff" style="background:#FFF8E1;padding:10px;border-radius:8px;font-size:12px"></div><label>Jumlah</label><input id="mQty" type="number" value="1"><label>Ekspedisi - COD Termasuk Ongkir</label><select id="mEks"><option>JNE Reguler - COD BISA - Rp9.000 - COD Cek Dulu </option><option>J&T Express - COD BISA - Rp8.000</option><option>GoSend - COD BISA - Rp12.000 - Instant 2 Jam! </option><option>GrabExpress - COD BISA - Rp13.000</option><option>VTC Express - COD BISA - Rp8.000</option><option>Pos Indonesia - COD BISA - Rp7.000</option><option>VTC Instant - COD BISA - Rp0 - 60 Menit</option></select><label>Metode Bayar</label><select id="mBayar"><option>COD Biasa - Bayar Dulu, Baru Buka</option><option>COD Cek Dulu - Buka Dulu, Cek, Baru Bayar</option><option>VTC Pay</option><option>Transfer Bank</option><option>QRIS</option></select><label>Alamat</label><textarea id="mAlamat" placeholder="Nama, No HP, Jalan, Kec, Kota, Provinsi"></textarea><button class="btn" onclick="tambahM()">+ Keranjang</button><button class="btn2" onclick="beliM()">Beli Sekarang</button><button class="btn2" onclick="shareAff()"> Bagikan Affiliate - Dapat Komisi + Extra Bonus!</button></div></div>
+</div>
 <script>
-let cart=[], semua=[], aktif=null, saldo=0, komisiAff=0, bonusAff=0, userSekarang=null, otpKode="", otpData=null, modeCari="vtc", pilihUkuran="", pilihWarna="", duitVTC=0, duitSeller=0, totalTransaksiVTC=0;
-const KOMISI=0.05, ADMIN=2000, BONUS_EXTRA=5000;
-function toast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',2800)}
-function switchAuth(m){if(m=='login'){document.getElementById('boxLogin').style.display='block';document.getElementById('boxDaftar').style.display='none'}else{document.getElementById('boxLogin').style.display='none';document.getElementById('boxDaftar').style.display='block'}}
-function kirimOTP(jenis){let hp=(jenis=='login')?document.getElementById('hpLogin').value.trim():document.getElementById('hpDaftar').value.trim();if(!hp){toast("Isi No HP dulu!");return}otpKode=String(Math.floor(100000+Math.random()*900000));otpData={jenis:jenis,hp:hp,nama:(jenis=='daftar'?document.getElementById('namaDaftar').value:"Teman VTC"),role:(jenis=='daftar'?document.getElementById('roleDaftar').value:"Pembeli")};if(jenis=='login'){document.getElementById('otpLoginTampil').innerText=otpKode;document.getElementById('otpLoginBox').style.display='block'}else{document.getElementById('otpDaftarTampil').innerText=otpKode;document.getElementById('otpDaftarBox').style.display='block'}toast("OTP: "+otpKode);alert("KODE OTP KAMU: "+otpKode+"\nMasukkan ke kolom OTP!")}
-function cekOTP(jenis){let inp=(jenis=='login')?document.getElementById('inputOTPLogin').value.trim():document.getElementById('inputOTPDaftar').value.trim();if(inp!==otpKode){toast("OTP Salah! OTP kamu: "+otpKode);return}userSekarang={nama:(otpData.nama||"Teman VTC"),hp:otpData.hp,role:otpData.role,prov:"Indonesia"};masukApp()}
-function loginSosmed(){userSekarang={nama:"Teman VTC",hp:"083878502333",role:"Pembeli",prov:"Indonesia"};masukApp()}
-function masukApp(){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';document.getElementById('namaAtas').innerText=userSekarang.nama;document.getElementById('roleAtas').innerText=userSekarang.role;document.getElementById('profilNama').innerText=userSekarang.nama+" - "+userSekarang.role;document.getElementById('profilDetail').innerHTML="Role: "+userSekarang.role+"<br> OTP Terverifikasi - Aman!";gambarAll();updateCart();updateUI();updateSeller()}
-function emojiFor(n){n=n.toLowerCase();if(n.includes("baju")||n.includes("kaos"))return "";if(n.includes("jaket"))return "";if(n.includes("celana"))return "";if(n.includes("topi"))return "";if(n.includes("sepatu"))return "";if(n.includes("tas"))return "";if(n.includes("pancing"))return "";if(n.includes("kulkas"))return "";if(n.includes("motor"))return "";if(n.includes("bor")||n.includes("alat"))return "";if(n.includes("hp")||n.includes("elektronik"))return "";if(n.includes("sembako")||n.includes("beras"))return "";return ""}
-function warnaFor(p){if(p=="Bangka Belitung")return "#FF6600";if(p=="DKI Jakarta")return "#FF0000";if(p=="Jawa Barat")return "#0088FF";if(p=="Jawa Timur")return "#7A00FF";if(p=="Aceh")return "#00AA00";return "#FF8C00"}
-function hitung(s,o){let k=Math.floor(s*KOMISI);let a=s>0?ADMIN:0;return{komisiVTC:k,adminVTC:a,sellerTerima:s-k,kurirTerima:o,vtcDapet:k+a,totalCOD:s+o+a}}
-function updateUI(){document.getElementById('saldoTxt').innerText="Rp "+duitVTC.toLocaleString('id-ID');document.getElementById('bonusTxt').innerText="Rp "+bonusAff.toLocaleString('id-ID');document.getElementById('affTxt').innerText="Rp "+komisiAff.toLocaleString('id-ID');document.getElementById('saldoProfil').innerText="Rp "+duitVTC.toLocaleString('id-ID');document.getElementById('bonusProfil').innerText="Rp "+bonusAff.toLocaleString('id-ID');document.getElementById('affProfil').innerText="Rp "+komisiAff.toLocaleString('id-ID');document.getElementById('komisiHome').innerText="Rp "+komisiAff.toLocaleString('id-ID');document.getElementById('bonusHome').innerText="Rp "+bonusAff.toLocaleString('id-ID');let ds=document.getElementById('duitSellerBox');if(ds)ds.innerHTML=" Seller: Rp "+duitSeller.toLocaleString('id-ID')+"<br> VTC: Rp "+duitVTC.toLocaleString('id-ID')+"<br>Transaksi: "+totalTransaksiVTC+"x"}
-function pindah(id,el){document.querySelectorAll('.hal').forEach(e=>e.classList.remove('on'));document.getElementById(id).classList.add('on');if(el){document.querySelectorAll('.btm div').forEach(d=>d.classList.remove('on'));el.classList.add('on')}window.scrollTo(0,0)}
-function add(nama,kat,harga,toko,prov,desain,ukuran,warna,desk,terjual,rating){semua.push({id:semua.length+1,nama:nama,kat:kat,harga:harga,toko:toko,prov:prov,desain:desain,ukuran:ukuran,warna:warna,desk:desk,terjual:terjual,rating:rating})}
-add("Baju Kaos Polos Premium","fashion",34000,"Toko Baju Bandung","Jawa Barat","Polos, Sablon, Oversize",["S","M","L","XL","XXL"],["Hitam","Putih","Biru","Coklat"],"Baju Kaos - Cotton combed, adem! Bebas pilih desain, ukuran, warna!",2500,"4.9");
-add("Baju Kemeja Flanel Kotak","fashion",125000,"Toko Baju Jakarta","DKI Jakarta","Kotak, Garis, Polos",["S","M","L","XL"],["Hitam","Biru","Coklat"],"Kemeja Flanel - Kotak-kotak, keren!",1800,"4.8");
-add("Celana Pendek Loreng Tentara - Army Camo","fashion",85000,"Toko Celana Bandung","Jawa Barat","Loreng Tentara, Loreng Hijau, Loreng Hitam",["28","30","32","34","36"],["Loreng","Hijau","Hitam","Coklat"],"Celana Pendek Loreng Tentara - Tebal, outdoor, mancing, camping! Bebas pilih desain loreng, ukuran, warna!",3200,"4.9");
-add("Celana Pendek Loreng Tentara - Premium Doreng","fashion",95000,"Toko Celana Jakarta","DKI Jakarta","Loreng Premium, Loreng Army",["28","30","32","34"],["Loreng","Hijau","Hitam"],"Celana Loreng Premium - Doreng army asli, awet!",2100,"4.8");
-add("Topi Baseball Pria - Loreng Army","fashion",55000,"Toko Topi Bandung","Jawa Barat","Baseball, Loreng, Polos",["All Size"],["Loreng","Hitam","Hijau"],"Topi Baseball - Loreng army, keren!",1500,"4.8");
-add("Jaket Bomber Pria","fashion",185000,"Toko Jaket Bandung","Jawa Barat","Bomber, Polos, Bordir",["M","L","XL","XXL"],["Hitam","Hijau","Coklat"],"Jaket Bomber - Tebal, hangat!",1200,"4.9");
-add("Pancing Teleskopik 180cm","pancing",75000,"Toko Pancing Bangka","Bangka Belitung","Teleskopik, Carbon",["180cm","210cm"],["Hitam","Biru"],"Pancing Teleskopik - Ringan, kuat!",800,"4.7");
-add("Bor Listrik 12V - Alat Tukang","alat",275000,"Toko Alat Jakarta","DKI Jakarta","Bor Listrik, Cordless",["12V","20V"],["Hitam","Biru"],"Bor Listrik - Buat ngebor tembok, kayu, besi!",900,"4.8");
-add("Beras Premium 5kg - Sembako","sembako",65000,"Toko Sembako Bangka","Bangka Belitung","Premium, Pulen",["5kg","10kg"],["Putih"],"Beras Premium - Pulen, wangi!",3000,"4.9");
-add("Kulkas 2 Pintu - Elektronik","elektronik",2250000,"Toko Elektronik Jakarta","DKI Jakarta","2 Pintu, Inverter",["1 Pintu","2 Pintu"],["Silver","Hitam"],"Kulkas 2 Pintu - Hemat listrik, dingin!",500,"4.8");
-function setMode(m){modeCari=m;document.getElementById('btnVTC').className=(m=='vtc'?'on':'');document.getElementById('btnGoogle').className=(m=='google'?'on':'');document.getElementById('btnVTC2').className=(m=='vtc'?'on':'');document.getElementById('btnGoogle2').className=(m=='google'?'on':'')}
-function saranCari(){let q=document.getElementById('cari').value.toLowerCase().trim();let box=document.getElementById('boxSaran');if(!q){box.style.display='none';return}let saranMap={"topi":["topi pria","topi wanita","topi baseball","topi bucket hat","topi loreng tentara"],"baju":["baju kaos polos","baju kemeja flanel","baju koko pria"],"celana":["celana pendek loreng tentara","celana jeans pria","celana chino"],"kulkas":["kulkas 2 pintu murah","kulkas mini"],"motor":["motor bekas murah","motor matic"],"alat":["alat bor listrik","alat tukang lengkap"]};let list=[];for(let k in saranMap){if(q.includes(k)||k.includes(q))list=list.concat(saranMap[k])}semua.forEach(p=>{if(p.nama.toLowerCase().includes(q) && !list.includes(p.nama))list.push(p.nama)});if(list.length==0)list=[q+" murah",q+" terbaru",q+" pria",q+" wanita"];box.innerHTML=[...new Set(list)].slice(0,6).map(s=>'<div onclick="pilihSaran(\''+s+'\')"> '+s+' </div>').join("");box.style.display='block'}
-function pilihSaran(s){document.getElementById('cari').value=s;document.getElementById('boxSaran').style.display='none';doCari()}
-function cariLangsung(k){document.getElementById('cari').value=k;setMode('vtc');doCari()}
-function cariLangsungGoogle(k){document.getElementById('cari').value=k;setMode('google');doCari()}
-function bukaGoogleLuar(){let q=document.getElementById('cari').value.trim();window.open("https://www.google.com/search?q="+encodeURIComponent(q),"_blank")}
-function cariDiShopee(){let q=document.getElementById('cari').value.trim();window.open("https://shopee.co.id/search?keyword="+encodeURIComponent(q),"_blank")}
-function kartu(p){return '<div class="item" onclick="buka('+p.id+')"><div class="foto" style="background:'+warnaFor(p.prov)+'"><span style="font-size:48px">'+emojiFor(p.nama)+'</span><span style="font-size:12px">'+p.nama+'</span></div><div class="isi"><span class="nama">'+p.nama+'</span><div style="font-size:11px">Desain: '+p.desain+'<br>Ukuran: '+p.ukuran.join(", ")+' | Warna: '+p.warna.join(", ")+'<br> '+p.rating+' | Terjual '+p.terjual+' | '+p.toko+'</div><span class="badge"> COD Cek Dulu</span><br><b class="harga">Rp '+p.harga.toLocaleString('id-ID')+'</b><br><button class="btn" onclick="event.stopPropagation();tambah('+p.id+')">+ Keranjang</button></div></div>'}
-function gambarAll(){
-  let ur=document.getElementById('urutHome')?document.getElementById('urutHome').value:"teratas";
-  let fk=document.getElementById('filterKatHome')?document.getElementById('filterKatHome').value:"semua";
-  let list=semua.filter(p=>fk=="semua"||p.kat==fk);
-  if(ur=="murah")list=[...list].sort((a,b)=>a.harga-b.harga);
-  if(ur=="mahal")list=[...list].sort((a,b)=>b.harga-a.harga);
-  if(ur=="teratas")list=[...list].sort((a,b)=>b.terjual-a.terjual);
-  document.getElementById('listProduk').innerHTML=list.map(kartu).join("");
-  document.getElementById('listFlash').innerHTML=semua.slice(0,4).map(p=>'<div style="background:#fff;border-radius:10px;padding:8px;text-align:center" onclick="buka('+p.id+')"><div style="font-size:32px">'+emojiFor(p.nama)+'</div><b style="color:#000;font-size:12px">'+p.nama+'</b><br><b style="color:#FF0000">Rp '+(p.harga*0.5).toLocaleString('id-ID')+'</b></div>').join("");
+let cat='Semua';
+let cart={};
+const WA_ADMIN='6283878502333';
+const products=[
+{id:1,name:"Kaos Oversize Premium VTC",price:75000,cat:"Fashion",sold:"Terjual 2,1rb",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400"},
+{id:2,name:"Sepatu Sneakers Running Pria/Wanita",price:185000,cat:"Fashion",sold:"Terjual 890",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"},
+{id:3,name:"Headset Bluetooth TWS Pro",price:129000,cat:"Elektronik",sold:"Terjual 5,3rb",img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"},
+{id:4,name:"Jam Tangan Smartwatch X8 Ultra",price:249000,cat:"Elektronik",sold:"Terjual 1,2rb",img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"},
+{id:5,name:"Keripik Pedas Daun Jeruk 500gr",price:35000,cat:"Makanan",sold:"Terjual 10rb+",img:"https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400"},
+{id:6,name:"Serum Wajah Glowing Vitamin C",price:89000,cat:"Kecantikan",sold:"Terjual 3,4rb",img:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400"},
+{id:7,name:"Lampu LED Kamar Tidur Aesthetic",price:65000,cat:"Rumah",sold:"Terjual 670",img:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400"},
+{id:8,name:"Tas Selempang Pria Premium",price:95000,cat:"Fashion",sold:"Terjual 1,5rb",img:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400"},
+];
+function rupiah(n){return 'Rp '+n.toLocaleString('id-ID')}
+function setCat(c,el){cat=c;document.querySelectorAll('.cat button').forEach(b=>b.classList.remove('active'));el.classList.add('active');render()}
+function render(){
+let q=document.getElementById('search').value.toLowerCase();
+let list=products.filter(p=>(cat==='Semua'||p.cat===cat)&&(p.name.toLowerCase().includes(q)));
+document.getElementById('grid').innerHTML=list.map(p=>`
+<div class="card">
+<img src="${p.img}">
+<div class="card-body">
+<span class="badge">GRATIS ONGKIR* | 0% ADMIN</span>
+<h3>${p.name}</h3>
+<div class="price">${rupiah(p.price)}</div>
+<div class="sold">⭐ 4.9 • ${p.sold}</div>
+<button class="btn-add" onclick="add(${p.id})">+ KERANJANG</button>
+</div>
+</div>`).join('')||'<p style="grid-column:span 2;text-align:center;padding:20px">Barang tidak ditemukan</p>';
 }
-function doCari(){
-  let qRaw=document.getElementById('cari').value.trim();let q=qRaw.toLowerCase().trim();
-  if(!q){toast("Ketik dulu yang mau dicari! Contoh: topi");return}
-  document.getElementById('boxSaran').style.display='none';pindah('h-search');
-  document.getElementById('infoCari').innerText='Hasil untuk "'+qRaw+'" - Mode: '+modeCari.toUpperCase();
-  document.getElementById('qGoogleTxt').innerText=qRaw;
-  let hasilVTC=semua.filter(p=>{let teks=(p.nama+" "+p.kat+" "+p.desain).toLowerCase();let kataQ=q.split(" ");return kataQ.every(k=>teks.includes(k))||teks.includes(q)});
-  let fw=document.getElementById('filterWarna').value;if(fw!="Semua")hasilVTC=hasilVTC.filter(p=>p.warna.some(w=>w.toLowerCase().includes(fw.toLowerCase()))||p.nama.toLowerCase().includes(fw.toLowerCase()));
-  let fu=document.getElementById('filterUkuran').value;if(fu!="Semua")hasilVTC=hasilVTC.filter(p=>p.ukuran.includes(fu));
-  let ur=document.getElementById('urutCari').value;if(ur=="murah")hasilVTC.sort((a,b)=>a.harga-b.harga);if(ur=="mahal")hasilVTC.sort((a,b)=>b.harga-a.harga);if(ur=="teratas")hasilVTC.sort((a,b)=>b.terjual-a.terjual);
-  if(modeCari=='google' || hasilVTC.length==0){
-    document.getElementById('hasilVTC').style.display='none';
-    document.getElementById('hasilGoogle').style.display='block';
-    document.getElementById('frameGoogle').src="https://www.google.com/search?igu=1&q="+encodeURIComponent(qRaw+" harga beli online");
-    document.getElementById('orangCari').innerHTML='<b>Klo di VTC belum ada Seller yang jual "'+qRaw+'", kamu bisa jadi Seller pertama!</b><br><button class="btn" style="margin-top:8px" onclick="pindah(\'h-pasar\')">Saya Mau Jual "'+qRaw+'" - Jadi Seller Pertama!</button><br><br><b>Orang lain juga cari:</b><br>'+["topi","baju","kulkas","motor","alat"].map(t=>'<span style="background:#eee;padding:6px 10px;border-radius:15px;display:inline-block;margin:4px;cursor:pointer" onclick="cariLangsungGoogle(\''+t+'\')">'+t+' </span>').join("");
-    if(hasilVTC.length>0)document.getElementById('infoCari').innerText='Di VTC ada '+hasilVTC.length+' - Di Google juga ada banyak! Mode: GOOGLE';
-    return;
-  }
-  document.getElementById('hasilVTC').style.display='block';document.getElementById('hasilGoogle').style.display='none';
-  document.getElementById('hasilVTC').innerHTML='<div class="grid">'+hasilVTC.map(kartu).join("")+'</div>';
-  document.getElementById('orangCari').innerHTML='<b>Orang lain juga cari:</b><br>'+["topi","baju","celana pendek loreng tentara"].map(t=>'<span style="background:#eee;padding:6px 10px;border-radius:15px;display:inline-block;margin:4px;cursor:pointer" onclick="cariLangsungGoogle(\''+t+'\')">'+t+' </span>').join("");
+function add(id){cart[id]=(cart[id]||0)+1;updateCart()}
+function updateCart(){
+let count=0,total=0;
+for(let id in cart){let p=products.find(x=>x.id==id);count+=cart[id];total+=p.price*cart[id]}
+document.getElementById('cartCount').innerText=count;
+document.getElementById('cartTotal').innerText=rupiah(total);
 }
-function buka(id){let p=semua.find(x=>x.id==id);aktif=p;pilihUkuran=p.ukuran[0];pilihWarna=p.warna[0];let mf=document.getElementById('mFoto');mf.style.background=warnaFor(p.prov);mf.innerHTML='<div style="font-size:60px">'+emojiFor(p.nama)+'</div><b>'+p.nama+'</b><p style="font-size:12px">'+p.toko+' - '+p.prov+'</p>';document.getElementById('mN').innerText=p.nama;document.getElementById('mH').innerText="Rp "+p.harga.toLocaleString('id-ID');document.getElementById('mVarian').innerHTML='<b>Desain:</b> '+p.desain+'<br><b>Ukuran:</b> '+p.ukuran.join(", ")+'<br><b>Warna:</b> '+p.warna.join(", ")+'<br><b>Deskripsi:</b> '+p.desk+'<br> '+p.rating+' | Terjual '+p.terjual;document.getElementById('mPilih').innerHTML='<b>Pilih Ukuran - Bebas Pilih!</b><br>'+p.ukuran.map(u=>'<span class="chip '+(u==pilihUkuran?'on':'')+'" onclick="pilihU(\''+u+'\',this)">'+u+'</span>').join("")+'<br><b>Pilih Warna - Bebas Pilih!</b><br>'+p.warna.map(w=>'<span class="chip '+(w==pilihWarna?'on':'')+'" onclick="pilihW(\''+w+'\',this)">'+w+'</span>').join("")+'<p style="font-size:12px;margin-top:6px">Kamu pilih: Ukuran <b id="pilU">'+pilihUkuran+'</b> - Warna <b id="pilW">'+pilihWarna+'</b></p>';document.getElementById('mToko').innerHTML='<b>'+p.toko+'</b>  Seller<br><span style="font-size:12px"> '+p.prov+' |  '+p.rating+'</span>';let komAff=Math.floor(p.harga*0.05);document.getElementById('mAff').innerHTML=' <b>Affiliate + Extra Bonus!</b><br>Bagikan link ini, dapat Komisi 5% = Rp '+komAff.toLocaleString('id-ID')+' + Extra Bonus Rp5.000! Total Rp '+(komAff+5000).toLocaleString('id-ID')+'!';document.getElementById('modal').style.display='flex'}
-function pilihU(u,el){pilihUkuran=u;document.querySelectorAll('#mPilih .chip').forEach(c=>{if(aktif.ukuran.includes(c.innerText))c.classList.remove('on')});el.classList.add('on');document.getElementById('pilU').innerText=u}
-function pilihW(w,el){pilihWarna=w;document.querySelectorAll('#mPilih .chip').forEach(c=>{if(aktif.warna.includes(c.innerText))c.classList.remove('on')});el.classList.add('on');document.getElementById('pilW').innerText=w}
-function tutup(){document.getElementById('modal').style.display='none'}
-function tambah(id){let p=semua.find(x=>x.id==id);cart.push({nama:p.nama,harga:p.harga,toko:p.toko,pilihUkuran:p.ukuran[0],pilihWarna:p.warna[0]});updateCart();toast(p.nama+" masuk keranjang - Ukuran "+p.ukuran[0]+" - Warna "+p.warna[0])}
-function tambahM(){if(!aktif)return;let q=parseInt(document.getElementById('mQty').value)||1;for(let i=0;i<q;i++)cart.push({nama:aktif.nama,harga:aktif.harga,toko:aktif.toko,pilihUkuran:pilihUkuran,pilihWarna:pilihWarna});updateCart();tutup();toast("Masuk keranjang! Ukuran "+pilihUkuran+" - Warna "+pilihWarna)}
-function beliM(){if(!aktif)return;cart.push({nama:aktif.nama,harga:aktif.harga,toko:aktif.toko,pilihUkuran:pilihUkuran,pilihWarna:pilihWarna});updateCart();tutup();pindah('h-pesanan')}
-function shareAff(){if(!aktif)return;let k=Math.floor(aktif.harga*0.05);komisiAff+=k;bonusAff+=BONUS_EXTRA;updateUI();toast("Link Affiliate dibagikan! Komisi Rp "+k.toLocaleString('id-ID')+" + Extra Bonus Rp5.000!")}
-function jadiAffiliate(){komisiAff+=5000;bonusAff+=5000;updateUI();toast("Selamat jadi Affiliate! Komisi + Bonus Rp10.000 masuk!")}
-function nontonLive(){toast("Nonton Live + Voucher Live!")}
-function mulaiLive(){toast("Live dimulai! VTC sambungkan live kamu ke pembeli!")}
-function updateSeller(){let c=document.getElementById('sellerContent');if(!c)return;let my=semua.filter(p=>p.toko.includes("Toko Kamu"));c.innerHTML="<b>Produk Saya:</b><br>"+(my.length==0?"Belum ada produk. Jual barang pertama kamu di bawah!":my.map(p=>p.nama+" - Rp "+p.harga.toLocaleString('id-ID')+" - Desain: "+p.desain+" - Ukuran: "+p.ukuran.join(", ")+" - Warna: "+p.warna.join(", ")).join("<br>"))}
-function updateCart(){document.getElementById('cartAtas').innerText=cart.length;let l=document.getElementById('listCart');let sub=cart.reduce((s,p)=>s+p.harga,0);let ongkirBayar=cart.length==0?0:9000;let h=hitung(sub,ongkirBayar);document.getElementById('rincianOtomatis').innerHTML="Harga: Rp "+sub.toLocaleString('id-ID')+"<br>Ongkir: Rp "+ongkirBayar.toLocaleString('id-ID')+"<br><b>TOTAL COD: Rp "+h.totalCOD.toLocaleString('id-ID')+"</b>";document.getElementById('subtotal').innerText="Rp "+sub.toLocaleString('id-ID');document.getElementById('ongkirTxt').innerText="Rp "+ongkirBayar.toLocaleString('id-ID');document.getElementById('komisiTxtCheckout').innerText="Rp "+h.komisiVTC.toLocaleString('id-ID');document.getElementById('adminTxtCheckout').innerText="Rp "+h.adminVTC.toLocaleString('id-ID');document.getElementById('grand').innerText="Rp "+h.totalCOD.toLocaleString('id-ID');document.getElementById('sellerTerimaTxt').innerText="Seller Terima: Rp "+h.sellerTerima.toLocaleString('id-ID')+" - Kurir: Rp "+h.kurirTerima.toLocaleString('id-ID')+" - VTC: Rp "+h.vtcDapet.toLocaleString('id-ID');if(cart.length==0){l.innerHTML="Kosong";return}l.innerHTML=cart.map(p=>'<div style="background:#fff7f0;padding:10px;border-radius:8px;margin:5px 0"><b>'+p.nama+'</b><br><span style="font-size:12px">Ukuran: '+(p.pilihUkuran||"-")+' - Warna: '+(p.pilihWarna||"-")+' - Seller: '+p.toko+'</span><br><b>Rp '+p.harga.toLocaleString('id-ID')+'</b></div>').join("")}
-function checkout(){if(cart.length==0){toast("Keranjang kosong");return}let sub=cart.reduce((s,p)=>s+p.harga,0);let h=hitung(sub,9000);let resi="VTC"+Math.floor(Math.random()*999999);let kirim=document.querySelector('input[name=kirim]:checked')?document.querySelector('input[name=kirim]:checked').value:"JNE Reguler";let bayar=document.getElementById('bayarCheckout').value;duitVTC+=h.vtcDapet;duitSeller+=h.sellerTerima;totalTransaksiVTC++;document.getElementById('riwayat').innerHTML=" Berhasil! Resi: "+resi+"<br>Ekspedisi: "+kirim+"<br>Bayar: "+bayar+"<br><b>TOTAL COD: Rp "+h.totalCOD.toLocaleString('id-ID')+"</b><br> VTC Protect: Uang ditahan VTC, diteruskan ke Seller klo barang sampai!";cart=[];updateCart();updateUI();updateSeller();toast("Checkout berhasil! Enak transaksi di VTC!")}
-function konfirmasiTerima(){toast(" Uang diteruskan ke Seller!")}
-function lacak(){let r=document.getElementById('cariResi').value;document.getElementById('hasilLacak').innerHTML="Resi "+r+": Paket di jalan - JNE / J&T / GoSend - Aman!"}
-function jual(){let n=document.getElementById('namaJual').value;let h=parseInt(document.getElementById('hargaJual').value);let desain=document.getElementById('desainJual').value;let ukuran=document.getElementById('ukuranJual').value.split(",").map(s=>s.trim()).filter(s=>s);let warna=document.getElementById('warnaJual').value.split(",").map(s=>s.trim()).filter(s=>s);let kat=document.getElementById('katJual').value;let prov=document.getElementById('provJual').value;if(!n||!h){toast("Isi nama & harga!");return}add(n,kat,h,"Toko Kamu - "+(userSekarang?userSekarang.nama:"Seller"),prov,desain||"Baru",ukuran.length?ukuran:["M","L"],warna.length?warna:["Hitam"],n+" - Barang asli Seller! Bebas pilih desain, ukuran, warna!",0,"5.0");document.getElementById('sellerDash').innerHTML="Barang tayang: "+n+" - Desain: "+desain+" - Ukuran: "+ukuran.join(", ")+" - Warna: "+warna.join(", ");gambarAll();updateSeller();toast("Barang tayang! Pembeli bebas pilih!");pindah('h-home')}
-function tarikSaldo(){toast("Saldo ditarik ke rekening!");duitVTC=0;duitSeller=0;updateUI()}
-function downloadApp(){toast("Chrome: titik 3 > Add to Home Screen!")}
-function bagikan(){bonusAff+=1000;updateUI();window.open("https://wa.me/?text="+encodeURIComponent("VTC MEGA STORE - Semua Ada Semua Bisa!"),"_blank")}
-gambarAll();updateUI();
-setInterval(()=>{let el=document.getElementById('timerFlash');if(el){let t=el.innerText.split(":");let s=parseInt(t[0])*3600+parseInt(t[1])*60+parseInt(t[2])-1;if(s<0)s=2*3600+59*60+59;let h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60;el.innerText=String(h).padStart(2,'0')+":"+String(m).padStart(2,'0')+":"+String(ss).padStart(2,'0')}},1000);
-document.addEventListener('click',e=>{if(!e.target.closest('.cari'))document.getElementById('boxSaran').style.display='none'});
+function openCart(){
+let html='';let total=0;
+for(let id in cart){let p=products.find(x=>x.id==id);let sub=p.price*cart[id];total+=sub;
+html+=`<div class="cart-item"><div><b>${p.name}</b><br>${rupiah(p.price)} x ${cart[id]}</div><div><div class="qty"><button onclick="chg(${id},-1)">-</button>${cart[id]}<button onclick="chg(${id},1)">+</button></div><b>${rupiah(sub)}</b></div></div>`}
+if(!html) html='<p>Keranjang masih kosong</p>';
+else html+=`<div style="text-align:right;margin-top:10px"><b>Total Barang: ${rupiah(total)}</b><br><span style="font-size:12px;color:#666">+ Ongkir sesuai ekspedisi (1-3 Hari)</span></div>`;
+document.getElementById('cartList').innerHTML=html;
+document.getElementById('modal').classList.add('open');
+}
+function chg(id,d){cart[id]+=d;if(cart[id]<=0) delete cart[id];updateCart();openCart()}
+function closeCart(){document.getElementById('modal').classList.remove('open')}
+function checkout(){
+let nama=document.getElementById('nama').value;
+let alamat=document.getElementById('alamat').value;
+let bayar=document.getElementById('bayar').value;
+let eksEl=document.getElementById('ekspedisi');
+let eks=eksEl.value;
+let ongkir=parseInt(eksEl.options[eksEl.selectedIndex].getAttribute('data-ongkir'))||9000;
+let catatan=document.getElementById('catatan').value||"-";
+if(!nama||!alamat){alert('Isi Nama & Alamat dulu ya!');return}
+if(Object.keys(cart).length===0){alert('Keranjang masih kosong!');return}
+let pesan=`Halo Admin VTC MEGA SHOP! Saya mau ORDER:\n\n`;
+let total=0;
+for(let id in cart){let p=products.find(x=>x.id==id);let sub=p.price*cart[id];total+=sub;pesan+=`• ${p.name} x${cart[id]} = ${rupiah(sub)}\n`}
+let grand=total+ongkir;
+pesan+=`\nSubtotal: ${rupiah(total)}\nOngkir: ${rupiah(ongkir)}\nTOTAL: ${rupiah(grand)}\nEkspedisi: ${eks} (Estimasi 1-3 Hari)\nNama: ${nama}\nAlamat: ${alamat}\nBayar: ${bayar}\nCatatan: ${catatan}\n\nTolong diproses ya min!`;
+window.open('https://wa.me/'+WA_ADMIN+'?text='+encodeURIComponent(pesan),'_blank');
+}
+function sellerWA(){window.open('https://wa.me/'+WA_ADMIN+'?text='+encodeURIComponent('Halo Admin VTC, saya mau DAFTAR JADI SELLER GRATIS 0% Potongan! Tolong info caranya.'),'_blank')}
+render();
 </script>
-<a href="https://wa.me/6283878502333?text=Halo%20Admin%20VTC%2C%20saya%20mau%20beli.%20Bayar%3A%20TF%2FCOD" target="_blank" style="display:block;background:#25D366;color:white;padding:15px;text-align:center;border-radius:10px;font-weight:bold;text-decoration:none;margin:15px;">BELI SEKARANG - TF / COD Se-Indonesia</a>
-<a href="https://wa.me/6283878502333?text=Halo%20Admin%20VTC%2C%20saya%20mau%20DAFTAR%20JADI%20SELLER" target="_blank" style="display:block;background:#000;color:white;padding:15px;text-align:center;border-radius:10px;font-weight:bold;text-decoration:none;margin:15px;">DAFTAR JADI SELLER - GRATIS</a>
 </body>
 </html>
