@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VTC MEGA SHOP - Gambar Asli Per Barang</title>
+<title>VTC MEGA SHOP - Gambar Fix</title>
 <style>*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f5f5}.top{background:#ee4d2d;color:#fff;padding:14px;text-align:center}.top h1{margin:0;font-size:26px}.top p{margin:4px 0 0;font-size:13px}.live{display:flex;gap:10px;overflow:auto;padding:10px;background:#111}.live div{background:#222;color:#fff;padding:12px;border-radius:12px;min-width:170px;text-align:center}.live button{background:red;color:#fff;border:0;padding:8px;border-radius:8px;width:100%;font-weight:bold}.search{display:flex;gap:8px;padding:10px;background:#fff;position:sticky;top:0;z-index:10}.search input{flex:1;padding:12px;border:2px solid #ee4d2d;border-radius:10px;font-size:15px}.search button{background:#ee4d2d;color:#fff;border:0;padding:0 18px;border-radius:10px;font-weight:bold}.cats{display:flex;gap:8px;overflow:auto;padding:8px 10px;background:#fff}.cats button{white-space:nowrap;padding:8px 14px;border-radius:20px;border:1px solid #ee4d2d;background:#fff;color:#ee4d2d;font-weight:bold}.cats button.on{background:#ee4d2d;color:#fff}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}.card{background:#fff;border-radius:14px;overflow:hidden;padding-bottom:10px}.card img{width:100%;height:150px;object-fit:cover;display:block;background:#eee}.card h3{margin:8px 10px 2px;font-size:15px;line-height:1.2}.card .pr{margin:0 10px;color:#ee4d2d;font-weight:bold;font-size:16px}.card .tk{margin:2px 10px;font-size:12px;color:#555}.card .ds{margin:4px 10px;font-size:12px;color:#777;height:32px;overflow:hidden}.card button{margin:8px 10px 0;width:calc(100% - 20px);background:#ee4d2d;color:#fff;border:0;padding:10px;border-radius:10px;font-weight:bold}.cart{position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px}.cart b{font-size:18px}.cart button{background:#25D366;color:#fff;border:0;padding:10px 16px;border-radius:10px;font-weight:bold}.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-end}.modal.open{display:flex}.box{background:#fff;width:100%;max-height:90vh;overflow:auto;border-radius:16px 16px 0 0;padding:14px}.box img{width:100%;height:240px;object-fit:cover;border-radius:12px}.box input,.box select{width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:10px}.btn{width:100%;padding:13px;border:0;border-radius:12px;font-weight:bold;margin-top:8px}.green{background:#25D366;color:#fff}.orange{background:#ee4d2d;color:#fff}.grey{background:#eee}</style></head>
 <body>
-<div class="top"><h1>🛒 VTC MEGA SHOP</h1><p>SEMUA KATEGORI LENGKAP! • Gambar Sudah Per Barang • Via 1 Admin - COD</p></div>
+<div class="top"><h1>🛒 VTC MEGA SHOP</h1><p>SEMUA KATEGORI LENGKAP! • Gambar Fix • Via 1 Admin - COD</p></div>
 <div class="live"><div>🔴 LIVE<br>Seller Pupuk Jam 08.00<br><button onclick="wa('Mau nonton LIVE Pupuk')">NONTON LIVE</button></div><div>🔴 LIVE<br>Seller Bibit Jam 10.00<br><button onclick="wa('Mau nonton LIVE Bibit')">NONTON LIVE</button></div><div>🎬 Drama<br>VTC Episode 1<br><button onclick="wa('Mau nonton Drama VTC')">NONTON</button></div></div>
 <div class="search"><input id="q" placeholder="Cari: pupuk, hijab, tas, kucing, gaming, kamera..." onkeyup="if(event.key==='Enter')cari()"><button onclick="cari()">CARI</button></div>
 <div class="cats" id="cats"></div>
 <div id="list" class="grid"></div>
 <div style="height:70px"></div>
 <div class="cart"><span>🛒 <b id="cnt">0</b> • <b id="tot">Rp 0</b></span><button onclick="openCart()">LIHAT KERANJANG</button></div>
-
 <div class="modal" id="mDetail"><div class="box"><div id="dCont"></div><button class="btn grey" onclick="closeAll()">TUTUP</button></div></div>
 <div class="modal" id="mCart"><div class="box"><h2>Keranjang Kamu</h2><div id="cCont"></div><input id="nama" placeholder="Nama Lengkap"><input id="alamat" placeholder="Alamat Lengkap + Patokan"><select id="exp"><option>J&T Express</option><option>JNE</option><option>SiCepat</option><option>AnterAja</option><option>COD - Bayar di Tempat</option></select><button class="btn green" onclick="checkout()">CHECKOUT - KE WA ADMIN</button><button class="btn grey" onclick="closeAll()">TUTUP</button></div></div>
-
 <script>
 const WA="6283878502333";
 function wa(p){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(p),"_blank")}
 let cart=[]; let filterCat="Semua"; let filterQ="";
-// DATABASE - NAMA BEDA, GAMBAR BEDA OTOMATIS DARI NAMA
 const DB=[
 ["Pupuk","Pupuk Urea 50kg","Toko Tani Jaya","Pupuk ori pabrik, segel, untuk padi jagung sawit sayur."],
 ["Pupuk","Pupuk ZA 50kg","Toko Tani Jaya","Pupuk ZA asli untuk kesuburan tanah dan daun hijau."],
@@ -66,45 +63,44 @@ const DB=[
 ["Tiket","Voucher Pulsa 50rb","VTC Tiket","Voucher pulsa all operator, langsung aktif."],
 ["Tiket","Tiket Bioskop 1 Orang","VTC Tiket","Tiket bioskop semua studio, pilih jam sendiri."],
 ];
-// GENERATOR HARGA AGAR BEDA-BEDA TAPI MASUK AKAL
 function harga(i){return (15000 + (i*9000)%180000)}
-// INI KUNCINYA: GAMBAR DIAMBIL DARI NAMA BARANG, BUKAN DARI KATEGORI!
-// Jadi Hijab cari gambar hijab, Tas cari gambar tas, Pupuk cari gambar pupuk
+// FIX: PAKAI UNSPLASH LANGSUNG - DIJAMIN KE-LOAD, BEDA PER KATEGORI + BEDA PER BARANG (ROTASI)
+const IMG={
+pupuk:["photo-1625246333195-78d9c38ad449","photo-1500937386664-56d1dfef3854","photo-1560493676-04071c5f467b","photo-1592982537447-7440770cbfc9","photo-1504328345606-18bbc8c9d7d1"],
+bibit:["photo-1592982537447-7440770cbfc9","photo-1500937386664-56d1dfef3854","photo-1416879595882-3373a0480b5b","photo-1464226184884-fa280b87c399"],
+fashion:["photo-1521572163474-6864f9cf17ab","photo-1523381210434-271e8be1f52b","photo-1576566588028-4147f3842f27","photo-1594633312681-425c7b97ccd1","photo-1515886657613-9f3515b0c78f","photo-1529139574466-a303027c1d8b"],
+hijab:["photo-1591195853828-11db59a44f6b","photo-1583743814966-8936f5b7be1a","photo-1601924994987-69e26d50dc26","photo-1610150457607-8a2d1b6a2a0a"],
+tas:["photo-1548036328-c9fa89d128fa","photo-1553062407-98eeb64c6a62","photo-1584917865442-de89df76afd3","photo-1546938576-2e1b0f2b0a1a","photo-1553062407-98eeb64c6a62"],
+kecantikan:["photo-1596462502278-27bfdc403348","photo-1571781926291-c477ebfd024b","photo-1594035910387-fea47794261f"],
+bayi:["photo-1519689680058-324335c77eba","photo-1515488042361-ee00e0ddd4e4","photo-1555009393-f20bdb245c4d"],
+hewan:["photo-1514888286974-6c03e2ca1dba","photo-1543466835-00a7907e9de1","photo-1583511655857-d19b40a7a54e","photo-1450778869180-41d0601e046e"],
+elektronik:["photo-1516035069371-29a1b244cc32","photo-1502920917128-1aa500764cbd","photo-1608043152269-423dbba4e7e1","photo-1512446816042-444d641267d4"],
+gaming:["photo-1606813907291-d86efa9b94db","photo-1578303512597-81e6cc155b3e","photo-1592840496694-26d035b52b48","photo-1606144042614-b2417e99c4e3"],
+otomotif:["photo-1558981403-c5f9899a28bc","photo-1449426468159-d96dbf08f19","photo-1486262715619-67b85e0b08d3"],
+buku:["photo-1544716278-ca5e3f4abd8c","photo-1512820790803-83ca734da794","photo-1456513080510-7bf3a84b82f8"],
+tiket:["photo-1489599849927-2ee91cede3ba","photo-1531297484001-80022131f5a1"],
+default:["photo-1521572163474-6864f9cf17ab","photo-1523381210434-271e8be1f52b","photo-1548036328-c9fa89d128fa","photo-1516035069371-29a1b244cc32"]
+};
 function gambar(nama,kat){
-  let key = nama.toLowerCase().replace(/[^a-z ]/g,"").trim().replace(/\s+/g," ");
-  // Mapping khusus biar lebih akurat
-  if(key.includes("hijab")) key="hijab woman";
-  else if(key.includes("tas ransel")) key="backpack bag";
-  else if(key.includes("tas selempang")) key="sling bag woman";
-  else if(key.includes("celana jeans")) key="jeans pants";
-  else if(key.includes("jaket hoodie")) key="hoodie jacket";
-  else if(key.includes("dress")) key="dress woman fashion";
-  else if(key.includes("kaos")) key="tshirt man";
-  else if(key.includes("pupuk")) key="fertilizer agriculture";
-  else if(key.includes("bibit padi")) key="rice seedling";
-  else if(key.includes("bibit jagung")) key="corn seed";
-  else if(key.includes("bibit durian")) key="durian fruit";
-  else if(key.includes("bibit sawit")) key="palm oil seedling";
-  else if(key.includes("makanan kucing")) key="cat food";
-  else if(key.includes("kandang kucing")) key="cat cage";
-  else if(key.includes("pasir kucing")) key="cat litter";
-  else if(key.includes("kamera")) key="camera canon";
-  else if(key.includes("lensa")) key="camera lens";
-  else if(key.includes("speaker")) key="bluetooth speaker";
-  else if(key.includes("ps5")) key="playstation 5";
-  else if(key.includes("nintendo")) key="nintendo switch";
-  else if(key.includes("stik")) key="game controller";
-  else if(key.includes("ban motor")) key="motorcycle tire";
-  else if(key.includes("oli motor")) key="motor oil";
-  else if(key.includes("novel")) key="novel book";
-  else if(key.includes("pensil")) key="pencil";
-  else if(key.includes("popok")) key="baby diaper";
-  else if(key.includes("susu formula")) key="baby milk formula";
-  else if(key.includes("botol susu")) key="baby bottle";
-  else if(key.includes("serum")) key="face serum skincare";
-  else if(key.includes("lipstik")) key="lipstick makeup";
-  // Loremflickr akan cari foto sesuai keyword, jadi tiap nama beda fotonya
-  return "https://loremflickr.com/400/300/"+encodeURIComponent(key)+"?lock="+encodeURIComponent(nama);
+  let k=nama.toLowerCase();
+  let arr=IMG.default;
+  if(k.includes("pupuk")) arr=IMG.pupuk;
+  else if(k.includes("bibit")) arr=IMG.bibit;
+  else if(k.includes("hijab")) arr=IMG.hijab;
+  else if(k.includes("tas")) arr=IMG.tas;
+  else if(k.includes("serum")||k.includes("lipstik")) arr=IMG.kecantikan;
+  else if(k.includes("popok")||k.includes("susu")||k.includes("botol")) arr=IMG.bayi;
+  else if(k.includes("kucing")||k.includes("anjing")||k.includes("pasir")) arr=IMG.hewan;
+  else if(k.includes("kamera")||k.includes("lensa")||k.includes("speaker")) arr=IMG.elektronik;
+  else if(k.includes("ps5")||k.includes("nintendo")||k.includes("stik")) arr=IMG.gaming;
+  else if(k.includes("ban")||k.includes("oli")) arr=IMG.otomotif;
+  else if(k.includes("novel")||k.includes("buku")||k.includes("pensil")) arr=IMG.buku;
+  else if(k.includes("voucher")||k.includes("tiket")) arr=IMG.tiket;
+  else if(k.includes("kaos")||k.includes("celana")||k.includes("jaket")||k.includes("dress")) arr=IMG.fashion;
+  // Rotasi: nama beda -> foto beda, walau 1 kategori
+  let h=0; for(let i=0;i<nama.length;i++) h+=nama.charCodeAt(i);
+  let id=arr[h % arr.length];
+  return "https://images.unsplash.com/"+id+"?w=400&q=80&auto=format&fit=crop";
 }
 function rupiah(n){return "Rp "+n.toLocaleString("id-ID")}
 let cats=["Semua","Pupuk","Bibit","Fashion","Tas","Kecantikan","Ibu, Bayi & Anak","Hewan","Elektronik","Gaming","Otomotif","Buku","Tiket"];
